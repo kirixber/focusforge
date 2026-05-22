@@ -1,50 +1,80 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: [INITIAL] -> 1.0.0
+- List of modified principles:
+  - Added: I. Offline-First & Local Persistence
+  - Added: II. Timestamp-Anchored Timing
+  - Added: III. Gamified Engagement
+  - Added: IV. 60FPS Performance
+  - Added: V. Type-Safe Architecture
+- Added sections: Technical Standards & Constraints, Development Workflow & Quality Gates
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md (Refined for FocusForge structure)
+  - ✅ .specify/templates/spec-template.md (Refined for FocusForge requirements)
+  - ✅ .specify/templates/tasks-template.md (Refined for mobile paths)
+- Follow-up TODOs:
+  - [ ] Initialize Supabase migrations for the profiles table.
+-->
+
+# FocusForge Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Offline-First & Local Persistence
+All user actions (session completion, XP gain, usage logging) MUST write to `AsyncStorage` via the type-safe `lib/storage.ts` wrapper first. Remote synchronization with Supabase should happen in the background via TanStack Query mutations. The app MUST remain fully functional for core features without an active network connection.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Timestamp-Anchored Timing
+The focus timer MUST use the timestamp-anchored approach defined in `lib/timer.ts`. Do not rely on `setInterval` or `setTimeout` as the source of truth for elapsed time, as these mechanisms drift or stop when the app is backgrounded or the device is locked. The UI MUST poll the wall-clock anchor to ensure ±1s accuracy at all times.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Gamified Engagement
+FocusForge is a "non-preachy" wellness app. Every user interaction SHOULD provide positive reinforcement through the XP system, achievement unlocks, or visual feedback (e.g., Lottie confetti). Discipline SHOULD feel like a game the user is winning, not a restriction.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. 60FPS Performance
+Fluidity is critical for user retention. All data visualizations (Victory Native XL), animations (Reanimated 4), and long lists (FlashList) MUST target 60FPS. Heavy computations or blocking UI thread operations MUST be offloaded to worklets or handled asynchronously.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Type-Safe Architecture
+Strict TypeScript (v5.9+) is mandatory across all layers. Avoid `any` or loose typing. Data structures for storage, API responses, and global context state MUST be explicitly defined to ensure structural integrity and catch regressions during development.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technical Standards & Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Framework & Styling
+- **Framework**: Expo (React Native) ~55.0. Use Expo Router for file-based navigation and deep linking.
+- **Styling**: NativeWind (TailwindCSS) is the primary styling solution. Brand tokens (Primary: `#6C63FF`) MUST be referenced from `lib/theme.ts`.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### State & Database
+- **Global State**: React Context for domain-specific state (Focus, Gamification, Usage, Goals).
+- **Data Fetching**: TanStack Query for server sync and optimistic updates.
+- **Persistence**: Local-first via `AsyncStorage`, mirrored to remote `Supabase` Postgres.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Visuals & Charts
+- **Charts**: Use Victory Native XL (Skia-based) for usage and focus trends.
+- **Animations**: Reanimated 4 for interaction states; Lottie for celebration effects.
+
+## Development Workflow & Quality Gates
+
+### Implementation Cycle
+Every feature follows the **Specify → Plan → Implement** cycle.
+1. **Spec**: Define user stories and acceptance criteria in `specs/`.
+2. **Plan**: Research technical approach and map tasks.
+3. **Implement**: Execute tasks with continuous validation.
+
+### Testing & Validation
+- **Unit Tests**: Mandatory for core logic in `lib/` (math, storage, timer).
+- **Component Tests**: Required for reusable UI elements in `components/`.
+- **Pre-Commit**: `npm run typecheck` and `npm test` MUST pass before merging or finalizing implementation.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+The FocusForge Constitution is the foundational document for project standards. It supersedes general development practices found in external templates.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Amendment Procedure
+1. Propose changes to principles or constraints.
+2. Update the Constitution and increment the version.
+3. Propagate changes to all dependent templates in `.specify/templates/`.
+4. Document the rationale in the Sync Impact Report.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### Versioning Policy
+- **MAJOR**: Backward incompatible governance/principle changes.
+- **MINOR**: New principles or major section additions.
+- **PATCH**: Clarifications, wording, or formatting fixes.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-23 | **Last Amended**: 2026-05-23

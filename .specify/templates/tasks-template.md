@@ -21,10 +21,7 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- **Mobile (FocusForge)**: `app/` (screens), `components/` (UI), `lib/` (logic), `tests/` (testing)
 
 <!--
   ============================================================================
@@ -50,8 +47,8 @@ description: "Task list template for feature implementation"
 **Purpose**: Project initialization and basic structure
 
 - [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T002 Update `lib/constants.ts` and `lib/theme.ts` with feature tokens
+- [ ] T003 [P] Configure feature-specific environment variables
 
 ---
 
@@ -59,16 +56,10 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
-
-Examples of foundational tasks (adjust based on your project):
-
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup database schema migrations in `supabase/migrations/`
+- [ ] T005 [P] Extend `lib/storage.ts` with feature-specific keys
+- [ ] T006 [P] Create base types in `lib/types/[feature].ts`
+- [ ] T007 Implement core business logic in `lib/[feature].ts`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -80,21 +71,16 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 1 (OPTIONAL)
 
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
-
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T010 [P] [US1] Unit test for logic in `tests/unit/[feature].test.ts`
+- [ ] T011 [P] [US1] Component test for `components/[feature]/[Component].test.tsx`
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T012 [P] [US1] Create UI component `components/[feature]/[Component].tsx`
+- [ ] T013 [P] [US1] Implement screen `app/(tabs)/[feature].tsx`
+- [ ] T014 [US1] Integrate logic with `Context` or `TanStack Query`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
