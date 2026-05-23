@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FocusForge — AI Integration Strategy</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f7f6f3; --bg3: #f0efe9;
+    --text: #1a1a18; --text2: #5a5a56; --text3: #8a8a84;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.18);
+    --accent: #6C63FF; --accent-dim: rgba(108,99,255,0.1);
+    --green: #059669; --green-dim: rgba(5,150,105,0.1);
+    --amber: #D97706; --amber-dim: rgba(217,119,6,0.1);
+    --blue: #2563EB; --blue-dim: rgba(37,99,235,0.1);
+    --red: #E11D48; --red-dim: rgba(225,29,72,0.1);
+    --purple: #7C3AED; --purple-dim: rgba(124,58,237,0.1);
+    --pink: #DB2777; --pink-dim: rgba(219,39,119,0.1);
+    --radius: 12px; --radius-sm: 8px;
+    --font: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    --mono: 'SF Mono', 'Fira Code', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+      --text: #e8e6df; --text2: #9a9890; --text3: #6a6a64;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    }
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem 1.5rem; max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: var(--text2); margin-bottom: 2rem; line-height: 1.6; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 0.75rem; }
+  .section { margin-bottom: 2rem; }
+  .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .card-body { padding: 1.25rem; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 20px; }
+  .bg-green { background: var(--green-dim); color: var(--green); }
+  .bg-amber { background: var(--amber-dim); color: var(--amber); }
+  .bg-blue  { background: var(--blue-dim);  color: var(--blue);  }
+  .bg-red   { background: var(--red-dim);   color: var(--red);   }
+  .bg-accent{ background: var(--accent-dim);color: var(--accent); }
+  .bg-purple{ background: var(--purple-dim);color: var(--purple); }
+  .bg-pink  { background: var(--pink-dim);  color: var(--pink);  }
+  .intro-box { background: var(--bg2); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 1rem 1.25rem; font-size: 13px; color: var(--text2); margin-bottom: 2rem; }
+  .intro-box strong { color: var(--text); font-weight: 500; }
+
+  /* Layer cards */
+  .layer { border-radius: var(--radius); border: 0.5px solid var(--border); overflow: hidden; margin-bottom: 1rem; }
+  .layer-header { padding: 0.75rem 1.25rem; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .layer-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .layer-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .layer-sub { font-size: 12px; color: var(--text3); margin-left: auto; }
+  .use-row { display: flex; gap: 12px; padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+  .use-row:last-child { border-bottom: none; }
+  .use-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .use-content h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .use-content p { font-size: 12px; color: var(--text2); line-height: 1.55; }
+  .flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .flow-box { background: var(--bg3); border: 0.5px solid var(--border); border-radius: 5px; padding: 3px 10px; font-size: 11px; color: var(--text2); }
+  .flow-box.ai { background: var(--blue-dim); border-color: rgba(37,99,235,0.25); color: var(--blue); font-weight: 500; }
+  .flow-arrow { color: var(--text3); font-size: 12px; }
+  .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 12px; margin-top: 5px; }
+
+  /* Model comparison grid */
+  .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .model-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; }
+  .model-card h4 { font-size: 13px; font-weight: 500; margin: 6px 0 4px; }
+  .model-card .desc { font-size: 12px; color: var(--text2); line-height: 1.55; margin-bottom: 8px; }
+  .model-card .verdict { font-size: 11px; color: var(--text3); border-top: 0.5px solid var(--border); padding-top: 6px; }
+  .model-card .verdict b { color: var(--text2); font-weight: 500; }
+
+  /* Cost table */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; font-weight: 500; color: var(--text2); padding: 6px 10px; border-bottom: 0.5px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 9px 10px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--text); font-weight: 500; }
+  .total-row td { border-top: 1px solid var(--border2); border-bottom: none; padding-top: 12px; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+
+  /* Code block */
+  pre { background: var(--bg2); border-radius: var(--radius-sm); padding: 1rem; font-size: 11px; color: var(--text2); overflow-x: auto; line-height: 1.7; font-family: var(--mono); border: 0.5px solid var(--border); }
+  .key { color: var(--accent); }
+  .val { color: var(--green); }
+  .num { color: var(--amber); }
+
+  /* Insight pills */
+  .insight-list { display: flex; flex-direction: column; gap: 8px; }
+  .insight-pill { display: flex; align-items: flex-start; gap: 10px; background: var(--bg2); border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-size: 13px; color: var(--text2); }
+  .insight-pill .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .privacy-note { font-size: 11px; color: var(--text3); margin-top: 0.75rem; display: flex; align-items: center; gap: 5px; }
+  .privacy-note::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<h1>FocusForge — AI Integration Strategy</h1>
+<p class="subtitle">How to make the app genuinely intelligent: which AI to use, where, and at what cost.</p>
+
+<div class="intro-box">
+  <strong>Architecture in one sentence:</strong> Run <span style="color:var(--accent)">on-device logic/ML</span> for real-time pattern detection (zero cost, offline), use <span style="color:var(--green)">Claude Haiku via Anthropic API</span> for personalized coaching narratives, and <span style="color:var(--amber)">Claude Sonnet</span> for the interactive AI coach — so the app feels intelligent everywhere, at a cost of ~$0.03 per active user per month.
+</div>
+
+<!-- LAYER 1 -->
+<div class="section">
+  <div class="section-label">Layer 1 — On-device intelligence (always-on, zero cost, offline)</div>
+  <div class="layer card">
+    <div class="layer-header">
+      <div class="layer-dot" style="background:#6C63FF"></div>
+      <span class="layer-title">Custom logic + lightweight ML — runs entirely on the device</span>
+      <span class="layer-sub">No API · No cost · No internet needed</span>
+    </div>
+    <div class="use-row">
+      <div class="use-icon bg-purple">⚡</div>
+      <div class="use-content">
+        <h4>Doom Loop Detection</h4>
+        <p>Sliding-window open-count algorithm. If opens > 5 in 15 min with avg session &lt; 45s → trigger mindful pause. Pure JS logic, no model needed. Instant, private.</p>
+        <span class="tag bg-accent">Custom JS logic</span>
+      </div>
+    </div>
+    <div class="use-row">
+      <div class="use-icon bg-amber">🔮</div>
+      <div class="use-content">
+        <h4>Vulnerability Score (risk prediction)</h4>
+        <p>After 14 days of data, a logistic regression trains locally using ONNX Runtime. Inputs: hour of day, day of week, mood tag, last-session gap. Output: risk score 0–1. Runs in under 5ms. Predicts your personal doom-scroll windows before they happen.</p>
+        <span class="tag bg-amber">ONNX Runtime (on-device)</span>
+      </div>
+    </div>
+    <div class="use-row">
+      <div class="use-icon bg-green">🧬</div>
+      <div class="use-content">
+        <h4>Behavioral Archetype Clustering</h4>
+        <p>K-means clustering on session history identifies which behavioral type you are: "Night Scroller", "Stress Checker", "Morning Doom-scroller", "Boredom Tapper". Runs weekly via background task. Feeds the system prompt Claude receives.</p>
+        <span class="tag bg-green">ml5.js / custom k-means</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYER 2 -->
+<div class="section">
+  <div class="section-label">Layer 2 — Claude API (Anthropic) — personalized narrative intelligence</div>
+
+  <div class="model-grid" style="margin-bottom: 1rem;">
+    <div class="model-card" style="border-color: rgba(5,150,105,0.4);">
+      <span class="badge bg-green">✓ Primary choice</span>
+      <h4>claude-haiku-3-5</h4>
+      <p class="desc">Sub-1s responses, $0.25/M tokens. Exceptional at empathetic, non-preachy coaching tone. Follows nuanced system prompts precisely — critical for "never shame the user" requirement. Cheap enough for one call per session completion.</p>
+      <p class="verdict"><b>Use for:</b> Insight cards, weekly reports, doom-loop messages, goal calibration</p>
+    </div>
+    <div class="model-card">
+      <span class="badge bg-blue">Selective use</span>
+      <h4>claude-sonnet-4</h4>
+      <p class="desc">Deeper reasoning for multi-turn coaching conversations. Worth the extra cost only when users are actively chatting with the AI coach — not for background generation tasks.</p>
+      <p class="verdict"><b>Use for:</b> Interactive AI Focus Coach chat (premium feature)</p>
+    </div>
+    <div class="model-card">
+      <span class="badge bg-amber">Fallback only</span>
+      <h4>GPT-4o mini</h4>
+      <p class="desc">Comparable speed and cost to Haiku. Weaker at following tone nuance ("never shame, frame as curiosity"). Viable API fallback if Anthropic has downtime, but requires significantly more prompt engineering.</p>
+      <p class="verdict"><b>Gap:</b> Claude's empathy framing is measurably better for wellness apps</p>
+    </div>
+    <div class="model-card">
+      <span class="badge bg-red">Not recommended</span>
+      <h4>On-device LLM (Llama 3B)</h4>
+      <p class="desc">Models small enough for phones produce generic, low-quality coaching text that undermines trust. 400–800MB download. The quality gap vs Haiku is enormous — users will notice immediately.</p>
+      <p class="verdict"><b>Only use:</b> Offline fallback for templated responses when zero connectivity</p>
+    </div>
+  </div>
+
+  <!-- 4 AI USE CASES -->
+  <div class="layer card">
+    <div class="layer-header">
+      <div class="layer-dot" style="background:#2563EB"></div>
+      <span class="layer-title">Claude-powered features — what gets built</span>
+    </div>
+
+    <div class="use-row">
+      <div class="use-icon bg-blue">📋</div>
+      <div class="use-content">
+        <h4>Weekly AI Coach Report</h4>
+        <p>Every Sunday, the user's 7-day behavioral summary is sent to Claude with a structured prompt. Returns a 3-paragraph personalized narrative: what improved, what pattern it reveals about them specifically, and one concrete suggestion for next week. Not generic — it mentions their actual trigger app, their specific worst time window, their personal archetype.</p>
+        <div class="flow">
+          <div class="flow-box">Usage JSON (7 days)</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box ai">Claude Haiku</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">Shareable weekly report card</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-row">
+      <div class="use-icon bg-accent">💡</div>
+      <div class="use-content">
+        <h4>Post-Session Insight Cards</h4>
+        <p>After each focus session completes, Claude generates a context-aware insight based on the user's rolling 14-day history. Never a generic "great job!" — instead: "You focus 40% longer on weekday mornings. Your Tuesday 9am sessions average 31 minutes. Consider blocking that window permanently." This is the moment users realize the app actually knows them.</p>
+        <div class="flow">
+          <div class="flow-box">Session + 14-day history</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box ai">Claude Haiku</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">1–2 sentence personal insight</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-row">
+      <div class="use-icon bg-pink">🤖</div>
+      <div class="use-content">
+        <h4>AI Focus Coach (conversational, premium)</h4>
+        <p>A chat interface where users ask: "Why do I keep doom-scrolling after lunch?" or "Help me design my perfect focus schedule." Claude has full context of their behavioral history, archetype, mood tags, trigger patterns, and goals. Every response is truly personalized — not generic productivity advice.</p>
+        <div class="flow">
+          <div class="flow-box">User message</div>
+          <span class="flow-arrow">+</span>
+          <div class="flow-box">Full behavioral context</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box ai">Claude Sonnet 4</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">Personalized coaching</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-row">
+      <div class="use-icon bg-green">🎯</div>
+      <div class="use-content">
+        <h4>Smart Goal Calibration</h4>
+        <p>During onboarding (and monthly), Claude analyzes the user's usage baseline and proposes a screen time goal with an explicit success probability. "Your current average is 4h 50m. A goal of 3h gives you a 71% chance of succeeding in week 1 based on similar patterns. Starting at 4h gives you 91%." Transforms goal-setting from aspirational to scientific.</p>
+        <div class="flow">
+          <div class="flow-box">Usage baseline + archetype</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box ai">Claude Haiku</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">Goal + success probability</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA PIPELINE -->
+<div class="section">
+  <div class="section-label">What gets sent to Claude — structured context object</div>
+  <div class="card">
+    <div class="card-body">
+      <p style="font-size:12px; color:var(--text2); margin-bottom:1rem; line-height:1.6;">Claude receives a structured JSON context object, never raw session logs. Short, cheap prompts — and privacy-safe by design.</p>
+      <pre><span class="key">"user"</span>: { <span class="key">"name"</span>: <span class="val">"Arjun"</span>, <span class="key">"goal_minutes"</span>: <span class="num">120</span>, <span class="key">"archetype"</span>: <span class="val">"Night Scroller"</span> },
+<span class="key">"week_summary"</span>: {
+  <span class="key">"avg_daily_screen_time"</span>: <span class="num">187</span>,       <span style="color:var(--text3)">// minutes</span>
+  <span class="key">"goal_met_days"</span>: <span class="num">3</span>,
+  <span class="key">"focus_sessions"</span>: <span class="num">8</span>,
+  <span class="key">"doom_loops_detected"</span>: <span class="num">4</span>,
+  <span class="key">"top_trigger_app"</span>: <span class="val">"Instagram"</span>,
+  <span class="key">"top_trigger_time"</span>: <span class="val">"Sunday 21:00"</span>
+},
+<span class="key">"mood_correlation"</span>: { <span class="key">"stressed"</span>: <span class="num">0.7</span>, <span class="key">"bored"</span>: <span class="num">0.2</span> },
+<span class="key">"vs_last_week"</span>: { <span class="key">"screen_time_delta"</span>: <span class="num">-12</span>, <span class="key">"sessions_delta"</span>: <span class="num">+3</span> },
+<span class="key">"request_type"</span>: <span class="val">"weekly_report"</span></pre>
+      <p class="privacy-note">No raw session logs. No timestamps. No personal content. Aggregated behavioral metrics only — GDPR-friendly by design.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COST TABLE -->
+<div class="section">
+  <div class="section-label">Cost reality — keeping AI spend near zero</div>
+  <div class="card">
+    <div class="card-body" style="padding:1.25rem 1.25rem 0.5rem;">
+      <p style="font-size:12px; color:var(--text2); margin-bottom:1rem; line-height:1.6;">Claude is called only on meaningful events — never on a polling schedule. Free tier users get 5 insight cards as a hook, then AI coach is premium-only.</p>
+    </div>
+    <div style="padding: 0 1.25rem 1.25rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Trigger</th>
+            <th>Frequency</th>
+            <th>Cost/User/Month</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Session insight card</td>
+            <td>Session completes</td>
+            <td>~20×/mo</td>
+            <td>$0.004</td>
+          </tr>
+          <tr>
+            <td>Weekly coach report</td>
+            <td>Sunday 8pm auto</td>
+            <td>4×/mo</td>
+            <td>$0.006</td>
+          </tr>
+          <tr>
+            <td>Smart goal calibration</td>
+            <td>Onboarding + monthly</td>
+            <td>1–2×/mo</td>
+            <td>$0.001</td>
+          </tr>
+          <tr>
+            <td>AI coach chat (premium)</td>
+            <td>User-initiated only</td>
+            <td>~10 msgs/mo</td>
+            <td>$0.02</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="3" style="font-weight:500; color:var(--text);">Total per active user / month</td>
+            <td style="font-weight:500; color:var(--text);"><span class="dot" style="background:var(--green)"></span>~$0.03</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px; color:var(--text3); margin-top:0.75rem; line-height:1.5;">At 1,000 active users → ~$30/month total AI spend. Covered entirely by 3–4 premium subscribers at $5.99/mo. The AI is essentially free at scale.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THIS WINS -->
+<div class="section">
+  <div class="section-label">Why this AI architecture wins</div>
+  <div class="insight-list">
+    <div class="insight-pill">
+      <span class="icon">🧠</span>
+      <span>The <strong>on-device layer</strong> makes the app feel instantly intelligent — doom loop detection fires in milliseconds with no network hop. Users experience the intelligence immediately, without waiting for an API call.</span>
+    </div>
+    <div class="insight-pill">
+      <span class="icon">💬</span>
+      <span>Claude's <strong>tone alignment</strong> is the decisive advantage over GPT-4o mini for a wellness app. You can write a system prompt that says "never shame, always frame as curiosity" — and Claude follows it consistently. Generic LLMs drift.</span>
+    </div>
+    <div class="insight-pill">
+      <span class="icon">📊</span>
+      <span>Passing a <strong>behavioral archetype</strong> (Night Scroller, Stress Checker) into the system prompt allows Claude to personalize every response without requiring the user to ever "set up" their AI — it figures them out automatically from pattern data.</span>
+    </div>
+    <div class="insight-pill">
+      <span class="icon">🔒</span>
+      <span>The <strong>structured JSON approach</strong> means no raw personal data ever leaves the device. Aggregated metrics only — which also keeps token counts low and costs near zero.</span>
+    </div>
+    <div class="insight-pill">
+      <span class="icon">🚀</span>
+      <span>The <strong>AI coach chat</strong> (premium) is what converts free users. After 2 weeks of personalized weekly reports, users will pay to ask "why do I do this?" and get a real, personalized answer back. No other screen time app offers this.</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
