@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CloudRain, Trees, Waves, StopCircle, PersonStanding, Settings, BrainCircuit } from 'lucide-react-native';
 import { Audio } from 'expo-av';
+import * as Haptics from 'expo-haptics';
 import { Text } from '@/components/ui/Text';
 import { RadialTimer } from '@/components/focus/RadialTimer';
 import { SoundscapeCard } from '@/components/focus/SoundscapeCard';
@@ -14,9 +15,27 @@ import { TAB_BAR_CLEARANCE } from '@/components/TabBar';
 import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
 
 const SOUNDSCAPES = [
-  { id: 'rain', label: 'Heavy Rain', volume: 0.7, icon: CloudRain, url: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_51790938f3.mp3?filename=heavy-rain-nature-sounds-8186.mp3' },
-  { id: 'forest', label: 'Deep Forest', volume: 0.5, icon: Trees, url: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_6060c29415.mp3?filename=forest-lullaby-110624.mp3' },
-  { id: 'white_noise', label: 'White Noise', volume: 0.4, icon: Waves, url: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_24e057f893.mp3?filename=white-noise-8117.mp3' },
+  { 
+    id: 'rain', 
+    label: 'Heavy Rain', 
+    volume: 0.6, 
+    icon: CloudRain, 
+    url: 'https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3' 
+  },
+  { 
+    id: 'forest', 
+    label: 'Deep Forest', 
+    volume: 0.4, 
+    icon: Trees, 
+    url: 'https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3' 
+  },
+  { 
+    id: 'white_noise', 
+    label: 'White Noise', 
+    volume: 0.3, 
+    icon: Waves, 
+    url: 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3' 
+  },
 ];
 
 export default function FocusScreen() {
@@ -32,11 +51,33 @@ export default function FocusScreen() {
   const [activeSoundscape, setActiveSoundscape] = useState<string | null>(null);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
+  // Initialize audio mode for better compatibility
+  useEffect(() => {
+    const setupAudio = async () => {
+      try {
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: false,
+          staysActiveInBackground: true,
+          interruptionModeIOS: 1, // DoNotMix
+          playsInSilentModeIOS: true,
+          shouldDuckAndroid: true,
+          interruptionModeAndroid: 1, // DoNotMix
+          playThroughEarpieceAndroid: false,
+        });
+      } catch (e) {
+        console.error('Audio setup error:', e);
+      }
+    };
+    setupAudio();
+  }, []);
+
   async function playSound(id: string) {
     const config = SOUNDSCAPES.find(s => s.id === id);
     if (!config) return;
 
     try {
+      Haptics.selectionAsync();
+      
       // Unload existing sound
       if (sound) {
         await sound.unloadAsync();
@@ -46,10 +87,20 @@ export default function FocusScreen() {
         { uri: config.url },
         { shouldPlay: true, isLooping: true, volume: config.volume }
       );
+      
       setSound(newSound);
       setActiveSoundscape(id);
     } catch (error) {
       console.error('Error playing sound:', error);
+      // Explicit manual load fallback for picky browsers
+      try {
+        const manualSound = new Audio.Sound();
+        await manualSound.loadAsync({ uri: config.url }, { shouldPlay: true, isLooping: true, volume: config.volume });
+        setSound(manualSound);
+        setActiveSoundscape(id);
+      } catch (e2) {
+        console.error('Manual load failed:', e2);
+      }
     }
   }
 
