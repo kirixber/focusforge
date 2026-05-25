@@ -9,6 +9,20 @@ FocusForge is a high-fidelity digital wellness application designed to help user
 ## 🎭 The Aesthetic: Botanical Sanctuary
 FocusForge is a sanctuary of "Mental Peace & Plants." The interface uses an **Off-Road Green** base to create a deep, grounded atmosphere reminiscent of a moonlit botanical garden. The design is high-variance and asymmetric, utilizing **Celadon White** as a singular, high-contrast accent. Interaction is fluid and cinematic, driven by heavy spring physics that make the UI feel tactile and alive.
 
+## 📸 App Showcase
+
+| Focus Dashboard | Deep Focus Timer |
+|:---:|:---:|
+| <img src="./docs/screenshots/focus_dashboard.png" width="300"> | <img src="./docs/screenshots/deep_focus_timer.png" width="300"> |
+
+| Botanical Nursery | Usage Analytics |
+|:---:|:---:|
+| <img src="./docs/screenshots/botanical_rewards.png" width="300"> | <img src="./docs/screenshots/usage_insights.png" width="300"> |
+
+| Gardener Profile |
+|:---:|
+| <img src="./docs/screenshots/gardener_profile.png" width="300"> |
+
 ---
 
 ## 🚀 Key Features
