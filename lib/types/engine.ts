@@ -33,3 +33,10 @@ export interface SplashState {
   isReady: boolean;
   videoFinished: boolean;
 }
+
+export interface TimeEquivalent {
+  id: string;
+  category: 'health' | 'learning' | 'social' | 'leisure';
+  label: string;
+  minutesRequired: number;
+}

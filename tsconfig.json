@@ -8,6 +8,9 @@
   },
   "exclude": [
     "node_modules",
-    "supabase/functions"
+    "supabase/functions",
+    "backend",
+    "docs",
+    "ui_backup"
   ]
 }

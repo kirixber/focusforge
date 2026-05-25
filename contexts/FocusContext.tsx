@@ -28,7 +28,7 @@ export const FocusProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [remainingTime, setRemainingTime] = useState(0);
   const [progress, setProgress] = useState(0);
   
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<any>(null);
 
   /**
    * Sync UI with the active session state.
