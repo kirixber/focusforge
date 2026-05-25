@@ -13,26 +13,27 @@
 
 // ── Primary brand color ───────────────────────────────────────────────────────
 // 🎨 Change this one value to rebrand the whole app
-export const ACCENT = '#6C63FF'           // FocusForge Purple
+export const ACCENT = '#C6E4C5'           // Celadon White
 
-// Derived from ACCENT — adjust opacity as needed
-export const ACCENT_DIM = 'rgba(108,99,255,0.12)'
-export const ACCENT_BORDER = 'rgba(108,99,255,0.30)'
-export const ACCENT_GLOW = 'rgba(108,99,255,0.20)'
+// Derived from ACCENT — muted for a natural feel
+export const ACCENT_DIM = 'rgba(198, 228, 197, 0.12)'
+export const ACCENT_BORDER = 'rgba(198, 228, 197, 0.30)'
+export const ACCENT_GLOW = 'rgba(198, 228, 197, 0.20)'
 // Text color on dark background using accent tone
-export const ACCENT_LIGHT = '#A5A1FF'
+export const ACCENT_LIGHT = '#DFF2DE'
 
 // ── Backgrounds ───────────────────────────────────────────────────────────────
-export const BG = '#0d0d0d'        // main app background
-export const SURFACE = '#1a1a1a'        // cards, inputs
-export const SURFACE2 = '#242424'        // elevated surface (sheet panels, etc.)
-export const SURFACE3 = '#2e2e2e'        // even more elevated
+export const BG = '#023A22'        // Off-Road Green (Deep)
+export const SURFACE = '#034F32'        // Muted Forest Green
+export const SURFACE2 = '#05623E'        // Elevated Pine
+export const SURFACE3 = '#07754B'        // Interactive Moss
 
 // ── Text ──────────────────────────────────────────────────────────────────────
-export const TEXT_PRIMARY = '#ffffff'
-export const TEXT_SECONDARY = 'rgba(255,255,255,0.55)'
-export const TEXT_TERTIARY = 'rgba(255,255,255,0.28)'
-export const TEXT_DISABLED = 'rgba(255,255,255,0.18)'
+export const TEXT_PRIMARY = '#C6E4C5'    // Celadon text
+export const TEXT_SECONDARY = 'rgba(198, 228, 197, 0.75)'
+export const TEXT_TERTIARY = 'rgba(198, 228, 197, 0.45)'
+export const TEXT_DISABLED = 'rgba(198, 228, 197, 0.25)'
+export const ON_ACCENT = '#023A22'       // Dark green for text on Celadon White
 
 // ── Borders ───────────────────────────────────────────────────────────────────
 export const BORDER = 'rgba(255,255,255,0.09)'

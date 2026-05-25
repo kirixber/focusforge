@@ -29,7 +29,7 @@ import Purchases from 'react-native-purchases'
 import { track } from '@/lib/analytics'
 import { adjustBrightness } from '@/lib/utils'
 import * as Haptics from 'expo-haptics'
-import { ACCENT, ACCENT_DIM, ACCENT_BORDER, BG, SURFACE, BORDER, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY } from '@/lib/theme'
+import { ACCENT, ACCENT_DIM, ACCENT_BORDER, BG, SURFACE, BORDER, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY, ON_ACCENT } from '@/lib/theme'
 
 // 🎨 BRAND: Customize your feature list
 const PRO_FEATURES = [
@@ -235,7 +235,7 @@ export default function UpgradeScreen() {
           <View style={[s.proActiveCard, { borderColor: ACCENT_BORDER }]}>
             <View style={s.proActiveTop}>
               <LinearGradient colors={[ACCENT, adjustBrightness(ACCENT, -30)]} style={s.proBadge}>
-                <Ionicons name="checkmark" size={14} color="#fff" />
+                <Ionicons name="checkmark" size={14} color={ON_ACCENT} />
               </LinearGradient>
               <View>
                 <Text style={s.proActiveTitle}>You're on Pro</Text>
@@ -271,7 +271,7 @@ export default function UpgradeScreen() {
               />
               <View style={s.proCardInner}>
                 <View style={[s.proPill, { backgroundColor: ACCENT }]}>
-                  <Ionicons name="sparkles" size={10} color="#fff" style={{ marginRight: 4 }} />
+                  <Ionicons name="sparkles" size={10} color={ON_ACCENT} style={{ marginRight: 4 }} />
                   <Text style={s.proPillText}>PRO</Text>
                 </View>
                 <View style={s.featureGrid}>
@@ -311,15 +311,16 @@ export default function UpgradeScreen() {
                     style={s.cta}
                   >
                     {purchasing ? (
-                      <ActivityIndicator size="small" color="#fff" />
+                      <ActivityIndicator size="small" color={ON_ACCENT} />
                     ) : (
                       <>
-                        <Ionicons name="sparkles" size={14} color="#fff" />
+                        <Ionicons name="sparkles" size={14} color={ON_ACCENT} />
                         <Text style={s.ctaText}>Unlock Pro</Text>
-                        <Ionicons name="arrow-forward" size={14} color="#fff" />
+                        <Ionicons name="arrow-forward" size={14} color={ON_ACCENT} />
                       </>
                     )}
                   </LinearGradient>
+
                 </Pressable>
               </View>
             )}
@@ -380,7 +381,7 @@ const s = StyleSheet.create({
   header:     { paddingTop: 4, paddingBottom: 20, gap: 8, alignItems: 'center' },
   sparkleWrap:{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginBottom: 4 },
   eyebrow:    { fontSize: 11, fontWeight: '700', letterSpacing: 2.5 },
-  title:      { color: '#fff', fontSize: 30, fontWeight: '800', letterSpacing: -0.5, textAlign: 'center' },
+  title:      { color: TEXT_PRIMARY, fontSize: 30, fontWeight: '800', letterSpacing: -0.5, textAlign: 'center' },
   subtitle:   { color: TEXT_SECONDARY, fontSize: 14, textAlign: 'center', lineHeight: 21 },
 
   proActiveCard: {
@@ -389,7 +390,7 @@ const s = StyleSheet.create({
   },
   proActiveTop:  { flexDirection: 'row', alignItems: 'center', gap: 12 },
   proBadge:      { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
-  proActiveTitle:{ color: '#fff', fontSize: 16, fontWeight: '700' },
+  proActiveTitle:{ color: TEXT_PRIMARY, fontSize: 16, fontWeight: '700' },
   proActiveSub:  { color: TEXT_SECONDARY, fontSize: 12, marginTop: 2 },
   manageBtn:     { alignItems: 'center', paddingTop: 4 },
   manageBtnText: { color: TEXT_TERTIARY, fontSize: 12, textDecorationLine: 'underline' },
@@ -397,7 +398,7 @@ const s = StyleSheet.create({
   proCard:      { borderRadius: RADIUS + 1.5, padding: 1.5, overflow: 'hidden', marginBottom: 16, borderWidth: 1 },
   proCardInner: { backgroundColor: SURFACE, borderRadius: RADIUS, padding: 20 },
   proPill:      { flexDirection: 'row', alignItems: 'center', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4, alignSelf: 'flex-start', marginBottom: 16 },
-  proPillText:  { color: '#fff', fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
+  proPillText:  { color: ON_ACCENT, fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
 
   featureGrid:  { gap: 12 },
   featureItem:  { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -412,9 +413,9 @@ const s = StyleSheet.create({
   packageRow:   { flexDirection: 'row', alignItems: 'center', gap: 12 },
   radio:        { width: 20, height: 20, borderRadius: 10, borderWidth: 1.5, borderColor: BORDER, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   radioInner:   { width: 10, height: 10, borderRadius: 5 },
-  packageLabel: { color: '#fff', fontSize: 15, fontWeight: '700' },
+  packageLabel: { color: TEXT_PRIMARY, fontSize: 15, fontWeight: '700' },
   packageNote:  { color: TEXT_SECONDARY, fontSize: 11, marginTop: 2 },
-  packagePrice: { color: '#fff', fontSize: 17, fontWeight: '800' },
+  packagePrice: { color: TEXT_PRIMARY, fontSize: 17, fontWeight: '800' },
   packagePer:   { color: TEXT_TERTIARY, fontSize: 11, textAlign: 'right' },
 
   unavailable: { borderRadius: 14, borderWidth: 1, borderColor: BORDER, padding: 20, alignItems: 'center', marginBottom: 16 },
@@ -422,7 +423,7 @@ const s = StyleSheet.create({
   ctaGlow:  { borderRadius: 16, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.35, shadowRadius: 14, elevation: 8, marginBottom: 12 },
   ctaWrap:  { borderRadius: 16, overflow: 'hidden' },
   cta:      { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 56, gap: 8 },
-  ctaText:  { color: '#fff', fontSize: 16, fontWeight: '800' },
+  ctaText:  { color: ON_ACCENT, fontSize: 16, fontWeight: '800' },
 
   freeRow:      { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: 14, borderWidth: 1, borderColor: BORDER, paddingHorizontal: 16, paddingVertical: 14, marginBottom: 20 },
   freeTierText: { color: TEXT_SECONDARY, fontSize: 14, fontWeight: '600' },

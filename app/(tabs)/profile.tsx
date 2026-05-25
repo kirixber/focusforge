@@ -20,6 +20,7 @@ import {
     TEXT_PRIMARY,
     TEXT_SECONDARY,
     TEXT_TERTIARY,
+    ON_ACCENT,
 } from '@/lib/theme'
 import { TAB_BAR_CLEARANCE } from '@/components/TabBar'
 import { demoUser } from '@/lib/mockData'
@@ -70,7 +71,7 @@ export default function ProfileScreen() {
                     <Text style={s.avatarText}>{profile?.initials ?? demoUser.initials}</Text>
                     {isPremium && (
                         <View style={s.premiumDot}>
-                            <Ionicons name="sparkles" size={10} color="#fff" />
+                            <Ionicons name="sparkles" size={10} color={ON_ACCENT} />
                         </View>
                     )}
                 </View>
@@ -84,7 +85,7 @@ export default function ProfileScreen() {
                 <Card style={[s.planCard, { borderColor: ACCENT_BORDER }]}>
                     <View style={s.planTop}>
                         <View style={s.planBadge}>
-                            <Ionicons name="sparkles" size={11} color="#fff" />
+                            <Ionicons name="sparkles" size={11} color={ON_ACCENT} />
                         </View>
                         <View style={{ flex: 1 }}>
                             <Text style={s.planTitle}>Premium Active</Text>
@@ -96,19 +97,24 @@ export default function ProfileScreen() {
                     </View>
                 </Card>
             ) : (
-                <Pressable onPress={() => router.push('/upgrade')} style={s.upgradeCard}>
+                <Pressable 
+                    onPress={() => router.push('/upgrade')} 
+                    style={({ pressed }) => [s.upgradeCard, pressed && { opacity: 0.9, transform: [{ scale: 0.98 }] }]}
+                >
                     <LinearGradient
-                        colors={[ACCENT, adjustBrightness(ACCENT, -18)]}
+                        colors={[ACCENT, adjustBrightness(ACCENT, -12)]}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
                         style={StyleSheet.absoluteFillObject}
                     />
-                    <Ionicons name="sparkles" size={15} color="#fff" />
-                    <View style={{ flex: 1 }}>
-                        <Text style={s.upgradeTitle}>Upgrade to Premium</Text>
-                        <Text style={s.upgradeSub}>Advanced controls, faster support, and all modules.</Text>
+                    <View style={s.upgradeIconWrap}>
+                        <Ionicons name="sparkles" size={18} color={ON_ACCENT} />
                     </View>
-                    <Ionicons name="chevron-forward" size={17} color="rgba(255,255,255,0.8)" />
+                    <View style={{ flex: 1, gap: 2 }}>
+                        <Text style={s.upgradeTitle}>Invest in your peace</Text>
+                        <Text style={s.upgradeSub}>Don't just block distractions—forge focus with AI Coaching.</Text>
+                    </View>
+                    <Ionicons name="arrow-forward" size={18} color="rgba(2, 58, 34, 0.5)" />
                 </Pressable>
             )}
 
@@ -169,7 +175,7 @@ const s = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.18)',
         marginBottom: 4,
     },
-    avatarText: { fontSize: 24, fontWeight: '800', color: '#fff' },
+    avatarText: { fontSize: 24, fontWeight: '800', color: TEXT_PRIMARY },
     premiumDot: {
         position: 'absolute',
         bottom: 0,
@@ -209,16 +215,30 @@ const s = StyleSheet.create({
     },
     manageBtnText: { color: ACCENT, fontSize: 12, fontWeight: '600' },
     upgradeCard: {
-        minHeight: 66,
-        borderRadius: 16,
+        minHeight: 74,
+        borderRadius: 18,
         overflow: 'hidden',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
-        paddingHorizontal: 14,
+        gap: 12,
+        paddingHorizontal: 16,
+        // High-end bevel shadow
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+        elevation: 6,
     },
-    upgradeTitle: { color: '#fff', fontSize: 14.5, fontWeight: '700' },
-    upgradeSub: { color: 'rgba(255,255,255,0.7)', fontSize: 12, marginTop: 1 },
+    upgradeIconWrap: {
+        width: 36,
+        height: 36,
+        borderRadius: 12,
+        backgroundColor: 'rgba(2, 58, 34, 0.08)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    upgradeTitle: { color: ON_ACCENT, fontSize: 16, fontWeight: '800' },
+    upgradeSub: { color: 'rgba(2, 58, 34, 0.6)', fontSize: 12, lineHeight: 18 },
     sectionTitle: {
         fontSize: 11,
         fontWeight: '700',

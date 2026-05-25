@@ -6,6 +6,8 @@ import { MindfulPauseModal } from './MindfulPauseModal';
 import { useFocus } from '@/contexts/FocusContext';
 import { router } from 'expo-router';
 
+import { supabase } from '@/lib/supabase';
+
 /**
  * Global manager for the Doom Loop Detector.
  * Listens to AppState changes and triggers the MindfulPauseModal.
@@ -20,13 +22,18 @@ export const DoomLoopManager: React.FC = () => {
     // Initialize buffer from storage
     doomLoop.init();
 
-    const subscription = AppState.addEventListener('change', nextAppState => {
+    const subscription = AppState.addEventListener('change', async (nextAppState) => {
       if (
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'
       ) {
         // App has come to the foreground
-        handleAppOpen();
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // Only trigger doom loop for LOGGED IN users
+        if (session) {
+          handleAppOpen();
+        }
       }
 
       appState.current = nextAppState;
@@ -35,7 +42,7 @@ export const DoomLoopManager: React.FC = () => {
     return () => {
       subscription.remove();
     };
-  }, []);
+  }, [activeSession]); // Add activeSession to dependency to ensure it has latest state
 
   const handleAppOpen = async () => {
     // If a focus session is already active, don't trigger doom loop

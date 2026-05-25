@@ -19,7 +19,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Text } from '@/components/ui/Text'
 import { supabase } from '@/lib/supabase'
 import { track } from '@/lib/analytics'
-import { ACCENT, ACCENT_DIM, ACCENT_BORDER, BG, SURFACE, BORDER } from '@/lib/theme'
+import { ACCENT, ACCENT_DIM, ACCENT_BORDER, BG, SURFACE, BORDER, ON_ACCENT, TEXT_PRIMARY, TEXT_SECONDARY } from '@/lib/theme'
 import { LinearGradient } from 'expo-linear-gradient'
 import { adjustBrightness } from '@/lib/utils'
 import { Fonts } from '@/lib/typography'
@@ -124,8 +124,8 @@ export default function OnboardingScreen() {
               style={s.primaryBtn}
             >
               {loading
-                ? <ActivityIndicator size="small" color="#fff" />
-                : <Text style={{ fontSize: 16, fontWeight: '800', color: '#fff' }}>
+                ? <ActivityIndicator size="small" color={ON_ACCENT} />
+                : <Text style={{ fontSize: 16, fontWeight: '800', color: ON_ACCENT }}>
                     {displayName.trim() ? 'Continue  →' : 'Get Started  →'}
                   </Text>
               }
@@ -151,8 +151,8 @@ const s = StyleSheet.create({
     width: 80, height: 80, borderRadius: 24,
     borderWidth: 1.5, alignItems: 'center', justifyContent: 'center',
   },
-  title:    { fontSize: 28, fontWeight: '800', color: '#fff', letterSpacing: -0.5, textAlign: 'center' },
-  subtitle: { fontSize: 14, color: 'rgba(255,255,255,0.38)', textAlign: 'center', lineHeight: 21, maxWidth: 280 },
+  title:    { fontSize: 28, fontWeight: '800', color: TEXT_PRIMARY, letterSpacing: -0.5, textAlign: 'center' },
+  subtitle: { fontSize: 14, color: TEXT_SECONDARY, textAlign: 'center', lineHeight: 21, maxWidth: 280 },
 
   fieldGroup: { gap: 8 },
   label: { fontSize: 11, fontWeight: '600', letterSpacing: 0.6, textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' },

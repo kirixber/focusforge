@@ -15,22 +15,53 @@ import {
     TEXT_TERTIARY,
 } from '@/lib/theme'
 import { TAB_BAR_CLEARANCE } from '@/components/TabBar'
-import { insightCards, statusLabel } from '@/lib/mockData'
+import { statusLabel } from '@/lib/mockData'
 import { useItems } from '@/hooks/useItems'
 import { useActivityFeed } from '@/hooks/useActivityFeed'
 import { useProfile } from '@/hooks/useProfile'
 import { useUsage } from '@/contexts/UsageContext'
 import { LeisureBankRing } from '@/components/gamification/LeisureBankRing'
+import { DigitalGarden, GardenStage } from '@/components/garden/DigitalGarden'
+import Animated, { 
+    FadeInDown, 
+    FadeInRight, 
+    FadeIn,
+    Layout
+} from 'react-native-reanimated'
 
 export default function HomeScreen() {
     const insets = useSafeAreaInsets()
     const [refreshing, setRefreshing] = useState(false)
     const queryClient = useQueryClient()
-
+    
     const { data: items = [] } = useItems()
     const { data: activityItems = [] } = useActivityFeed()
     const { data: profile } = useProfile()
     const { bank } = useUsage()
+
+    // 🌿 Automated Garden Logic
+    const { gardenStage, gardenWilted } = useMemo(() => {
+        const streak = profile?.currentStreak ?? 0
+        const lastFocusAt = profile?.lastFocusAt
+
+        // Map streak to growth stage
+        let stage: GardenStage = 'seedling'
+        if (streak >= 14) stage = 'bonsai'
+        else if (streak >= 7) stage = 'sapling'
+        else if (streak >= 3) stage = 'sprout'
+
+        // Wilt logic: more than 24 hours since last focus session
+        let wilted = false
+        if (lastFocusAt) {
+            const lastDate = new Date(lastFocusAt)
+            const diffHours = (Date.now() - lastDate.getTime()) / (1000 * 60 * 60)
+            if (diffHours > 24) wilted = true
+        } else if (streak > 0) {
+            wilted = true
+        }
+
+        return { gardenStage: stage, gardenWilted: wilted }
+    }, [profile])
 
     const greeting = (() => {
         const h = new Date().getHours()
@@ -46,6 +77,7 @@ export default function HomeScreen() {
         setRefreshing(true)
         await queryClient.invalidateQueries({ queryKey: ['items'] })
         await queryClient.invalidateQueries({ queryKey: ['activity'] })
+        await queryClient.invalidateQueries({ queryKey: ['profile'] })
         setRefreshing(false)
     }
 
@@ -56,64 +88,95 @@ export default function HomeScreen() {
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={ACCENT} />}
             showsVerticalScrollIndicator={false}
         >
-            <View style={s.header}>
+            <Animated.View entering={FadeInDown.duration(600).springify()} style={s.header}>
                 <View>
                     <Text style={s.greeting}>{greeting}, {(profile?.fullName ?? '').split(' ')[0]}</Text>
                     <Text style={s.subGreeting}>Forge your focus today.</Text>
                 </View>
-                <View style={s.streakFlame}>
-                    <Ionicons name="flame" size={18} color="#FF6B35" />
-                    <Text style={s.streakText}>5</Text>
+                <View style={s.headerRight}>
+                    <Pressable 
+                        onPress={() => router.push('/coach')}
+                        style={({ pressed }) => [s.aiIconButton, pressed && { opacity: 0.7 }]}
+                    >
+                        <Ionicons name="sparkles" size={20} color={ACCENT} />
+                    </Pressable>
+                    <View style={s.streakFlame}>
+                        <Ionicons name="flame" size={18} color="#FF6B35" />
+                        <Text style={s.streakText}>{profile?.currentStreak ?? 0}</Text>
+                    </View>
                 </View>
+            </Animated.View>
+
+            {/* Digital Garden Section */}
+            <View style={s.gardenSection}>
+                <DigitalGarden 
+                    stage={gardenStage} 
+                    isWilted={gardenWilted}
+                    size={220}
+                />
+                
+                {gardenWilted && (
+                    <Animated.View entering={FadeInDown.duration(400)} style={s.wiltOverlay}>
+                        <Text style={s.wiltText}>Your garden needs watering.</Text>
+                        <Text style={s.wiltSubText}>Complete a focus session to revive it.</Text>
+                    </Animated.View>
+                )}
             </View>
 
             {/* Focus Engine Hero */}
-            <View style={s.heroSection}>
+            <Animated.View entering={FadeIn.delay(300).duration(800)} style={s.heroSection}>
                 <LeisureBankRing balance={bank?.currentBalanceMinutes ?? 0} />
-            </View>
+            </Animated.View>
 
-            <Text style={s.sectionTitle}>Recent Items</Text>
-            {topItems.map((item) => (
-                <Pressable
+            <Animated.Text entering={FadeInDown.delay(400)} style={s.sectionTitle}>Recent Items</Animated.Text>
+            {topItems.map((item, index) => (
+                <Animated.View 
+                    entering={FadeInDown.delay(500 + index * 100).duration(500).springify()}
                     key={item.id}
-                    onPress={() => router.push(`/detail/${item.id}`)}
-                    style={({ pressed }) => [pressed && { opacity: 0.75 }]}
+                    layout={Layout.springify()}
                 >
-                    <Card style={s.itemCard}>
-                        <View style={s.itemTop}>
-                            <View style={s.itemTitleWrap}>
-                                <Text style={s.cardTitle}>{item.name}</Text>
-                                <Text style={s.cardSub}>{item.owner} | Updated {item.updatedAt}</Text>
+                    <Pressable
+                        onPress={() => router.push(`/detail/${item.id}`)}
+                        style={({ pressed }) => [pressed && { opacity: 0.75 }]}
+                    >
+                        <Card style={s.itemCard}>
+                            <View style={s.itemTop}>
+                                <View style={s.itemTitleWrap}>
+                                    <Text style={s.cardTitle}>{item.name}</Text>
+                                    <Text style={s.cardSub}>{item.owner} | Updated {item.updatedAt}</Text>
+                                </View>
+                                <StatusBadge status={item.status} label={statusLabel(item.status)} />
                             </View>
-                            <StatusBadge status={item.status} label={statusLabel(item.status)} />
-                        </View>
 
-                        <Text style={[s.cardSub, { marginTop: 8 }]}>{item.summary}</Text>
+                            <Text style={[s.cardSub, { marginTop: 8 }]}>{item.summary}</Text>
 
-                        <View style={s.itemMeta}>
-                            <Text style={s.metaValue}>{item.completion}% complete</Text>
-                            <Text style={s.metaValue}>Health {item.health}</Text>
-                            <Text style={s.metaValue}>{item.activeUsers} active</Text>
-                        </View>
-                    </Card>
-                </Pressable>
+                            <View style={s.itemMeta}>
+                                <Text style={s.metaValue}>{item.completion}% complete</Text>
+                                <Text style={s.metaValue}>Health {item.health}</Text>
+                                <Text style={s.metaValue}>{item.activeUsers} active</Text>
+                            </View>
+                        </Card>
+                    </Pressable>
+                </Animated.View>
             ))}
 
-            <Text style={s.sectionTitle}>Recent Activity</Text>
-            <Card style={s.activityCard}>
-                {latestActivity.map((activity, index) => (
-                    <View key={activity.id} style={[s.activityRow, index < latestActivity.length - 1 && s.activityDivider]}>
-                        <View style={s.activityIconWrap}>
-                            <Ionicons name={activityIcon(activity.kind)} size={14} color={ACCENT} />
+            <Animated.Text entering={FadeInDown.delay(800)} style={s.sectionTitle}>Recent Activity</Animated.Text>
+            <Animated.View entering={FadeInDown.delay(900)} style={s.activityCard}>
+                <Card style={{ paddingVertical: 4, paddingHorizontal: 0 }}>
+                    {latestActivity.map((activity, index) => (
+                        <View key={activity.id} style={[s.activityRow, index < latestActivity.length - 1 && s.activityDivider]}>
+                            <View style={s.activityIconWrap}>
+                                <Ionicons name={activityIcon(activity.kind)} size={14} color={ACCENT} />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={s.activityTitle}>{activity.title}</Text>
+                                <Text style={s.cardSub}>{activity.detail}</Text>
+                            </View>
+                            <Text style={s.activityTime}>{activity.timeAgo}</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={s.activityTitle}>{activity.title}</Text>
-                            <Text style={s.cardSub}>{activity.detail}</Text>
-                        </View>
-                        <Text style={s.activityTime}>{activity.timeAgo}</Text>
-                    </View>
-                ))}
-            </Card>
+                    ))}
+                </Card>
+            </Animated.View>
         </ScrollView>
     )
 }
@@ -141,6 +204,21 @@ const s = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 8 
     },
+    headerRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    aiIconButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(108, 99, 255, 0.1)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(108, 99, 255, 0.2)',
+    },
     greeting: { fontSize: 26, fontWeight: '800', color: '#fff', letterSpacing: -0.6 },
     subGreeting: { fontSize: 14, color: TEXT_SECONDARY },
     streakFlame: {
@@ -158,6 +236,25 @@ const s = StyleSheet.create({
         color: '#FF6B35',
         fontWeight: '700',
         fontSize: 14
+    },
+    gardenSection: {
+        alignItems: 'center',
+        paddingVertical: 10,
+        marginBottom: 8,
+    },
+    wiltOverlay: {
+        marginTop: -10,
+        alignItems: 'center',
+    },
+    wiltText: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: TEXT_SECONDARY,
+    },
+    wiltSubText: {
+        fontSize: 11,
+        color: TEXT_TERTIARY,
+        marginTop: 2,
     },
     heroSection: {
         alignItems: 'center',

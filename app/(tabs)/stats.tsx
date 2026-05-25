@@ -1,16 +1,26 @@
 import React, { useMemo } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { Text } from '@/components/ui/Text';
 import { Card } from '@/components/ui/Card';
 import { TimeTranslatorCard } from '@/components/gamification/TimeTranslatorCard';
+import { useAIInsights } from '@/hooks/useAIInsights';
 import { translator } from '@/lib/engine/translator';
+import { shareAchievement } from '@/lib/utils/sharing';
 import { BG, ACCENT, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY, SURFACE2 } from '@/lib/theme';
 import { TAB_BAR_CLEARANCE } from '@/components/TabBar';
 
 export default function StatsScreen() {
   const insets = useSafeAreaInsets();
+  const { insights } = useAIInsights();
+  
+  const latestInsight = insights?.[0];
+
+  const handleShare = async (label: string) => {
+    await shareAchievement(label);
+  };
   
   // Simulated focus minutes for today
   const totalFocusMinutes = 125;
@@ -30,15 +40,38 @@ export default function StatsScreen() {
         <Text style={s.subtitle}>Your focus is paying off.</Text>
       </View>
 
+      {/* AI Coach Insight Card */}
+      {latestInsight && (
+        <View style={s.aiCoachSection}>
+          <View style={s.sectionHeaderRow}>
+            <Text style={s.sectionTitle}>Claude AI Coach</Text>
+            <Pressable 
+              onPress={() => router.push('/coach')}
+              style={s.chatLink}
+            >
+              <Text style={s.chatLinkText}>Chat with Coach</Text>
+              <Ionicons name="chevron-forward" size={12} color={ACCENT} />
+            </Pressable>
+          </View>
+          <Card style={s.aiCard}>
+            <View style={s.aiHeader}>
+              <Ionicons name="sparkles" size={16} color={ACCENT} />
+              <Text style={s.aiBadge}>AI OBSERVATION</Text>
+            </View>
+            <Text style={s.aiText}>"{latestInsight.insight_text}"</Text>
+          </Card>
+        </View>
+      )}
+
       {/* Time Translator Hero */}
       <View style={s.translatorHero}>
         <Text style={s.heroTitle}>Today's Achievements</Text>
         <View style={s.cardStack}>
           {equivalents.map((eq, i) => (
-            <View key={eq.id} style={[s.stackedCard, { marginTop: i === 0 ? 0 : -60, zIndex: 10 - i, transform: [{ scale: 1 - i * 0.05 }] }]}>
+            <View key={eq.id} style={[s.stackedCard, { marginTop: i === 0 ? 0 : -45, zIndex: 10 - i, transform: [{ scale: 1 - i * 0.04 }] }]}>
                <TimeTranslatorCard 
                 equivalent={eq} 
-                onShare={() => console.log('Share achievement:', eq.id)} 
+                onShare={() => handleShare(eq.label)} 
                />
             </View>
           ))}
@@ -72,7 +105,7 @@ export default function StatsScreen() {
           {[40, 70, 20, 90, 100, 60, 45].map((h, i) => (
             <View key={i} style={s.barWrap}>
               <View style={[s.bar, { height: h }, i === 4 && { backgroundColor: ACCENT }]} />
-              <Text style={s.barDay}>MTWTFSS'[i]</Text>
+              <Text style={s.barDay}>{'MTWTFSS'[i]}</Text>
             </View>
           ))}
         </View>
@@ -100,6 +133,49 @@ const s = StyleSheet.create({
     letterSpacing: 0.8,
     textTransform: 'uppercase',
     marginTop: 8,
+  },
+  sectionHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginBottom: 8,
+  },
+  chatLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingBottom: 2,
+  },
+  chatLinkText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: ACCENT,
+  },
+  aiCoachSection: {
+    marginBottom: 8,
+  },
+  aiCard: {
+    backgroundColor: 'rgba(108, 99, 255, 0.08)',
+    borderColor: 'rgba(108, 99, 255, 0.2)',
+    padding: 16,
+    gap: 10,
+  },
+  aiHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  aiBadge: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: ACCENT,
+    letterSpacing: 1,
+  },
+  aiText: {
+    fontSize: 15,
+    color: TEXT_PRIMARY,
+    lineHeight: 22,
+    fontStyle: 'italic',
   },
   translatorHero: {
     marginBottom: 20,

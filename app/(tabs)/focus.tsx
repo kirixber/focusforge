@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Text } from '@/components/ui/Text';
@@ -8,11 +8,12 @@ import { Button } from '@/components/ui/Button';
 import { MirrorMoodSelector } from '@/components/focus/MirrorMoodSelector';
 import { TimerRing } from '@/components/focus/TimerRing';
 import { SessionCompleteModal } from '@/components/focus/SessionCompleteModal';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { useFocus } from '@/contexts/FocusContext';
 import { useUsage } from '@/contexts/UsageContext';
 import { MoodId, SessionMode } from '@/lib/types/engine';
-import { ACCENT, BG, TEXT_PRIMARY, TEXT_SECONDARY, SURFACE2 } from '@/lib/theme';
+import { ACCENT, BG, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY, SURFACE2, ON_ACCENT, SURFACE, BORDER } from '@/lib/theme';
+import { TAB_BAR_CLEARANCE } from '@/components/TabBar';
 
 const MODES: { id: SessionMode, label: string, icon: keyof typeof Ionicons.glyphMap, duration: number }[] = [
   { id: 'pomodoro', label: 'Work', icon: 'timer-outline', duration: 25 },
@@ -35,8 +36,10 @@ export default function FocusScreen() {
   
   const [selectedMode, setSelectedMode] = useState<SessionMode>('pomodoro');
   const [selectedMood, setSelectedMood] = useState<MoodId | null>(null);
+  const [customMinutes, setCustomMinutes] = useState('25');
 
   const completeModalRef = React.useRef<BottomSheetModal>(null);
+  const customModalRef = React.useRef<BottomSheetModal>(null);
 
   React.useEffect(() => {
     if (lastCompletedSession) {
@@ -44,10 +47,18 @@ export default function FocusScreen() {
     }
   }, [lastCompletedSession]);
 
+  const handleModePress = (modeId: SessionMode) => {
+    setSelectedMode(modeId);
+    if (modeId === 'custom') {
+      customModalRef.current?.present();
+    }
+  };
+
   const handleStart = async () => {
     if (!selectedMood) return;
     const mode = MODES.find(m => m.id === selectedMode);
-    await startSession(selectedMode, mode?.duration || 25);
+    const duration = selectedMode === 'custom' ? parseInt(customMinutes, 10) : (mode?.duration || 25);
+    await startSession(selectedMode, duration);
   };
 
   const handleCompleteDone = (postMood: MoodId) => {
@@ -64,7 +75,7 @@ export default function FocusScreen() {
 
     return (
       <View style={[s.container, { paddingTop: insets.top }]}>
-        <View style={s.activeContent}>
+        <View style={[s.activeContent, { paddingBottom: TAB_BAR_CLEARANCE + 100 }]}>
           <Text style={s.modeLabel}>{activeSession.mode.toUpperCase()}</Text>
           
           <View style={s.timerContainer}>
@@ -79,10 +90,10 @@ export default function FocusScreen() {
 
           <View style={s.activeFooter}>
             <Button 
-              title="Stop Session" 
+              label="Stop Session" 
               onPress={stopSession} 
               variant="secondary"
-              style={{ width: '100%' }}
+              fullWidth
             />
           </View>
         </View>
@@ -94,7 +105,7 @@ export default function FocusScreen() {
     <>
       <ScrollView 
         style={[s.container, { backgroundColor: BG }]}
-        contentContainerStyle={{ paddingTop: insets.top + 20, paddingBottom: 40 }}
+        contentContainerStyle={{ paddingTop: insets.top + 20, paddingBottom: TAB_BAR_CLEARANCE + 120 }}
         showsVerticalScrollIndicator={false}
       >
         <View style={s.header}>
@@ -107,7 +118,7 @@ export default function FocusScreen() {
           {MODES.map((mode) => (
             <TouchableOpacity 
               key={mode.id}
-              onPress={() => setSelectedMode(mode.id)}
+              onPress={() => handleModePress(mode.id)}
               style={[
                 s.modeCard,
                 selectedMode === mode.id && s.selectedModeCard
@@ -116,7 +127,7 @@ export default function FocusScreen() {
               <Ionicons 
                 name={mode.icon} 
                 size={24} 
-                color={selectedMode === mode.id ? '#fff' : TEXT_SECONDARY} 
+                color={selectedMode === mode.id ? ON_ACCENT : TEXT_SECONDARY} 
               />
               <Text style={[
                 s.modeCardLabel,
@@ -125,7 +136,12 @@ export default function FocusScreen() {
                 {mode.label}
               </Text>
               {mode.duration > 0 && (
-                <Text style={s.modeDuration}>{mode.duration}m</Text>
+                <Text style={[
+                  s.modeDuration,
+                  selectedMode === mode.id && s.selectedModeDuration
+                ]}>
+                  {mode.duration}m
+                </Text>
               )}
             </TouchableOpacity>
           ))}
@@ -143,10 +159,11 @@ export default function FocusScreen() {
 
         <View style={s.footer}>
           <Button 
-            title="Start Session" 
+            label="Start Session" 
             onPress={handleStart} 
             disabled={!selectedMood}
             variant={!selectedMood ? 'secondary' : 'primary'}
+            fullWidth
             style={s.startButton}
           />
           {!selectedMood && (
@@ -154,6 +171,38 @@ export default function FocusScreen() {
           )}
         </View>
       </ScrollView>
+
+      {/* Custom Duration Modal */}
+      <BottomSheetModal
+        ref={customModalRef}
+        index={0}
+        snapPoints={['40%']}
+        backdropComponent={(props) => <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />}
+        backgroundStyle={{ backgroundColor: SURFACE }}
+        handleIndicatorStyle={{ backgroundColor: BORDER }}
+      >
+        <BottomSheetView style={s.customContent}>
+          <Text style={s.customTitle}>Custom Duration</Text>
+          <Text style={s.customSub}>How many minutes do you want to focus?</Text>
+          
+          <View style={s.inputContainer}>
+            <TextInput
+              value={customMinutes}
+              onChangeText={setCustomMinutes}
+              keyboardType="number-pad"
+              style={s.customInput}
+              placeholderTextColor={TEXT_TERTIARY}
+            />
+            <Text style={s.minutesSuffix}>minutes</Text>
+          </View>
+
+          <Button 
+            label="Set Duration" 
+            onPress={() => customModalRef.current?.dismiss()}
+            fullWidth
+          />
+        </BottomSheetView>
+      </BottomSheetModal>
 
       <SessionCompleteModal 
         ref={completeModalRef}
@@ -207,12 +256,16 @@ const s = StyleSheet.create({
     marginTop: 8,
   },
   selectedModeLabel: {
-    color: '#fff',
+    color: ON_ACCENT,
+    fontWeight: '800',
   },
   modeDuration: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.6)',
+    color: TEXT_TERTIARY,
     marginTop: 2,
+  },
+  selectedModeDuration: {
+    color: 'rgba(2, 58, 34, 0.6)',
   },
   mirrorSection: {
     marginBottom: 32,
@@ -277,5 +330,45 @@ const s = StyleSheet.create({
     width: '100%',
     marginTop: 'auto',
     marginBottom: 40,
+  },
+  customContent: {
+    padding: 24,
+    alignItems: 'center',
+    gap: 16,
+  },
+  customTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: TEXT_PRIMARY,
+  },
+  customSub: {
+    fontSize: 14,
+    color: TEXT_SECONDARY,
+    textAlign: 'center',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: SURFACE2,
+    borderRadius: 16,
+    paddingHorizontal: 20,
+    width: '100%',
+    height: 64,
+    gap: 12,
+    borderWidth: 1,
+    borderColor: BORDER,
+  },
+  customInput: {
+    flex: 1,
+    fontSize: 24,
+    fontWeight: '800',
+    color: ACCENT,
+    textAlign: 'right',
+  },
+  minutesSuffix: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: TEXT_SECONDARY,
+    width: 80,
   }
 });

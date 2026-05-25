@@ -8,6 +8,8 @@ export interface UserProfile {
     email: string
     initials: string
     planType: 'free' | 'premium'
+    currentStreak: number
+    lastFocusAt: string | null
 }
 
 export function useProfile() {
@@ -19,8 +21,18 @@ export function useProfile() {
 
             const { data: profile } = await supabase
                 .from('profiles')
-                .select('display_name, plan_type')
+                .select('display_name, plan_type, current_streak')
                 .eq('id', user.id)
+                .maybeSingle()
+
+            // Fetch last focus session timestamp for wilt logic
+            const { data: lastSession } = await supabase
+                .from('focus_sessions')
+                .select('ended_at')
+                .eq('user_id', user.id)
+                .eq('completed', true)
+                .order('ended_at', { ascending: false })
+                .limit(1)
                 .maybeSingle()
 
             const fullName =
@@ -34,6 +46,8 @@ export function useProfile() {
                 email: user.email ?? '',
                 initials: getInitials(fullName),
                 planType: (profile?.plan_type as 'free' | 'premium') ?? 'free',
+                currentStreak: profile?.current_streak ?? 0,
+                lastFocusAt: lastSession?.ended_at ?? null,
             }
         },
         placeholderData: {
@@ -41,6 +55,8 @@ export function useProfile() {
             email: demoUser.email,
             initials: demoUser.initials,
             planType: 'free',
+            currentStreak: 5,
+            lastFocusAt: new Date().toISOString(),
         },
     })
 }

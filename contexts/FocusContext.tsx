@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { timerEngine, TimerSession, SessionMode } from '../lib/timer';
 import { timeBank } from '../lib/engine/timeBank';
+import { supabase } from '../lib/supabase';
 
 interface FocusContextType {
   activeSession: TimerSession | null;
@@ -82,6 +83,16 @@ export const FocusProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       await timeBank.depositFocusTime(durationMinutes);
       
       setLastCompletedSession(activeSession);
+      
+      // Trigger AI Insight generation in background
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) {
+          supabase.functions.invoke('generate-insight', {
+            body: { user_id: user.id, insight_type: 'post_session' }
+          });
+        }
+      });
+
       await stopSession();
     }
   };

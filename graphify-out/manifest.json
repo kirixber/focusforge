@@ -1,0 +1,1072 @@
+{
+  "/home/sg4067/Documents/focusforge/eas.json": {
+    "mtime": 1779478276.0447826,
+    "ast_hash": "1fec238c3830e7eeb4ab2cd41e1b3e5e",
+    "semantic_hash": "1fec238c3830e7eeb4ab2cd41e1b3e5e"
+  },
+  "/home/sg4067/Documents/focusforge/app.json": {
+    "mtime": 1779478276.0384388,
+    "ast_hash": "9477c7817f284cbc83c48821ede6eecf",
+    "semantic_hash": "9477c7817f284cbc83c48821ede6eecf"
+  },
+  "/home/sg4067/Documents/focusforge/tailwind.config.js": {
+    "mtime": 1779478276.0523906,
+    "ast_hash": "9addc1b1655476dfdc50a4f03cc1d5ab",
+    "semantic_hash": "9addc1b1655476dfdc50a4f03cc1d5ab"
+  },
+  "/home/sg4067/Documents/focusforge/package.json": {
+    "mtime": 1779538693.9504666,
+    "ast_hash": "e9633ba0d87f96a2b44c7d87e161cbc6",
+    "semantic_hash": "e9633ba0d87f96a2b44c7d87e161cbc6"
+  },
+  "/home/sg4067/Documents/focusforge/metro.config.js": {
+    "mtime": 1779478276.045471,
+    "ast_hash": "fa372c2cf3bb3a9810076516ae2896ff",
+    "semantic_hash": "fa372c2cf3bb3a9810076516ae2896ff"
+  },
+  "/home/sg4067/Documents/focusforge/jest.config.js": {
+    "mtime": 1779478276.045028,
+    "ast_hash": "80c69ac4e3b13f00c788ff3ebad62eea",
+    "semantic_hash": "80c69ac4e3b13f00c788ff3ebad62eea"
+  },
+  "/home/sg4067/Documents/focusforge/tsconfig.json": {
+    "mtime": 1779478276.0523906,
+    "ast_hash": "2e97a3b911bc08bc33d20a78abcbca4d",
+    "semantic_hash": "2e97a3b911bc08bc33d20a78abcbca4d"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/init-options.json": {
+    "mtime": 1779476046.0515676,
+    "ast_hash": "360e372646e2e76c077b554aa0261730",
+    "semantic_hash": "360e372646e2e76c077b554aa0261730"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/integration.json": {
+    "mtime": 1779476045.722871,
+    "ast_hash": "ec637640b959b7d0490cff978a9ed3c4",
+    "semantic_hash": "ec637640b959b7d0490cff978a9ed3c4"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/powershell/create-new-feature.ps1": {
+    "mtime": 1779476017.855072,
+    "ast_hash": "126d44abaf3f455c3a46287150ffcec7",
+    "semantic_hash": "126d44abaf3f455c3a46287150ffcec7"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/powershell/git-common.ps1": {
+    "mtime": 1779476017.8677099,
+    "ast_hash": "6850abf378460b0b31ad2b9e7ca60266",
+    "semantic_hash": "6850abf378460b0b31ad2b9e7ca60266"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/powershell/auto-commit.ps1": {
+    "mtime": 1779476017.854656,
+    "ast_hash": "31455f1c85510ff2f9904b5da9a5fbc2",
+    "semantic_hash": "31455f1c85510ff2f9904b5da9a5fbc2"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/powershell/initialize-repo.ps1": {
+    "mtime": 1779476017.8681319,
+    "ast_hash": "6668e63007465e34f6d684dd2ef45718",
+    "semantic_hash": "6668e63007465e34f6d684dd2ef45718"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/bash/create-new-feature.sh": {
+    "mtime": 1779476017.8524795,
+    "ast_hash": "5236f607b9bcc2346e99714c06592817",
+    "semantic_hash": "5236f607b9bcc2346e99714c06592817"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/bash/git-common.sh": {
+    "mtime": 1779476017.8538408,
+    "ast_hash": "ccbcc8f94d52d18a50f892b96fd2d9f0",
+    "semantic_hash": "ccbcc8f94d52d18a50f892b96fd2d9f0"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/bash/auto-commit.sh": {
+    "mtime": 1779476017.8479939,
+    "ast_hash": "d2eff3439669e2f21825e2727eab3e6e",
+    "semantic_hash": "d2eff3439669e2f21825e2727eab3e6e"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/scripts/bash/initialize-repo.sh": {
+    "mtime": 1779476017.854179,
+    "ast_hash": "74e6c1d493a031b83243ce71777f27ae",
+    "semantic_hash": "74e6c1d493a031b83243ce71777f27ae"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/integrations/speckit.manifest.json": {
+    "mtime": 1779476045.798514,
+    "ast_hash": "b3b9a242c21efba88a6b7498978dd41d",
+    "semantic_hash": "b3b9a242c21efba88a6b7498978dd41d"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/integrations/gemini.manifest.json": {
+    "mtime": 1779476045.7207158,
+    "ast_hash": "55fb2df50b2f279539538c96e4b88b05",
+    "semantic_hash": "55fb2df50b2f279539538c96e4b88b05"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/workflows/workflow-registry.json": {
+    "mtime": 1779476046.0450516,
+    "ast_hash": "ec8e3babaf7f06c82cbaebcbe10839c7",
+    "semantic_hash": "ec8e3babaf7f06c82cbaebcbe10839c7"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/scripts/bash/create-new-feature.sh": {
+    "mtime": 1779476045.743004,
+    "ast_hash": "08f248f9dfe66f8f1f9a519b61568d10",
+    "semantic_hash": "08f248f9dfe66f8f1f9a519b61568d10"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/scripts/bash/setup-tasks.sh": {
+    "mtime": 1779476045.746775,
+    "ast_hash": "4469f7e61a36ffc2580318f7628e6ad7",
+    "semantic_hash": "4469f7e61a36ffc2580318f7628e6ad7"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/scripts/bash/setup-plan.sh": {
+    "mtime": 1779476045.7497182,
+    "ast_hash": "521df3d78e0f9179fa0db9bf4e765816",
+    "semantic_hash": "521df3d78e0f9179fa0db9bf4e765816"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/scripts/bash/check-prerequisites.sh": {
+    "mtime": 1779476045.7525945,
+    "ast_hash": "c721663f05a10bf0c1dacf674d7349db",
+    "semantic_hash": "c721663f05a10bf0c1dacf674d7349db"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/scripts/bash/common.sh": {
+    "mtime": 1779476045.7553983,
+    "ast_hash": "7de472f3938465821db6aaf26a24c0c4",
+    "semantic_hash": "7de472f3938465821db6aaf26a24c0c4"
+  },
+  "/home/sg4067/Documents/focusforge/assets/lottie/confetti.json": {
+    "mtime": 1779535176.6281188,
+    "ast_hash": "bed22364f0e26dc93bc4c55becd411c6",
+    "semantic_hash": "bed22364f0e26dc93bc4c55becd411c6"
+  },
+  "/home/sg4067/Documents/focusforge/.claude/settings.local.json": {
+    "mtime": 1779532772.2532918,
+    "ast_hash": "799044afbb0a64d636a8ba64be8b0690",
+    "semantic_hash": "799044afbb0a64d636a8ba64be8b0690"
+  },
+  "/home/sg4067/Documents/focusforge/backend/types/supabase.ts": {
+    "mtime": 1779535107.4938352,
+    "ast_hash": "e0fc1ebe98daefb137e51b6ba8d4acdb",
+    "semantic_hash": "e0fc1ebe98daefb137e51b6ba8d4acdb"
+  },
+  "/home/sg4067/Documents/focusforge/backend/supabase/functions/generate-insight/index.ts": {
+    "mtime": 1779535107.4958353,
+    "ast_hash": "f8db888893664a3313963ce9f4d25ca9",
+    "semantic_hash": "f8db888893664a3313963ce9f4d25ca9"
+  },
+  "/home/sg4067/Documents/focusforge/backend/supabase/functions/revenuecat-webhook/index.ts": {
+    "mtime": 1779535107.4998353,
+    "ast_hash": "7331fe5c8a0f049f44cf4605a728fc92",
+    "semantic_hash": "7331fe5c8a0f049f44cf4605a728fc92"
+  },
+  "/home/sg4067/Documents/focusforge/backend/supabase/functions/premium-coach-chat/index.ts": {
+    "mtime": 1779535107.4978354,
+    "ast_hash": "10256a5a67ebff4f5b748476806d5ef5",
+    "semantic_hash": "10256a5a67ebff4f5b748476806d5ef5"
+  },
+  "/home/sg4067/Documents/focusforge/backend/supabase/migrations/20260523000000_focusforge_schema.sql": {
+    "mtime": 1779535107.4918354,
+    "ast_hash": "498fe6d6d7481004d971af6db4a8f85b",
+    "semantic_hash": "498fe6d6d7481004d971af6db4a8f85b"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useProfile.ts": {
+    "mtime": 1779478276.045028,
+    "ast_hash": "e035977c67bba9cfb6f759d4dfdf885e",
+    "semantic_hash": "e035977c67bba9cfb6f759d4dfdf885e"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useAICoach.ts": {
+    "mtime": 1779601791.1212094,
+    "ast_hash": "e36943de2dd697398542a8353de5cb08",
+    "semantic_hash": "e36943de2dd697398542a8353de5cb08"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useNotifications.ts": {
+    "mtime": 1779478276.045028,
+    "ast_hash": "6a60e10bdcbd3dba03f2f6bb8523d766",
+    "semantic_hash": "6a60e10bdcbd3dba03f2f6bb8523d766"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useItems.ts": {
+    "mtime": 1779478276.045028,
+    "ast_hash": "e006c6d353b1d414219f626df40df13d",
+    "semantic_hash": "e006c6d353b1d414219f626df40df13d"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useActivityFeed.ts": {
+    "mtime": 1779478276.0447826,
+    "ast_hash": "e66b38ebdcfb0d5080c9d8b6394bdaee",
+    "semantic_hash": "e66b38ebdcfb0d5080c9d8b6394bdaee"
+  },
+  "/home/sg4067/Documents/focusforge/hooks/useAIInsights.ts": {
+    "mtime": 1779539402.1476848,
+    "ast_hash": "837bfaf334214512a449e7a80c159c84",
+    "semantic_hash": "837bfaf334214512a449e7a80c159c84"
+  },
+  "/home/sg4067/Documents/focusforge/app/settings.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "7e648f94981692f2459a7be30a17cae4",
+    "semantic_hash": "7e648f94981692f2459a7be30a17cae4"
+  },
+  "/home/sg4067/Documents/focusforge/app/privacy.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "57c830ba73534e082b246e1ca3ceabd0",
+    "semantic_hash": "57c830ba73534e082b246e1ca3ceabd0"
+  },
+  "/home/sg4067/Documents/focusforge/app/terms.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "2f758fb0cdbb607ac5a99a4386b53b92",
+    "semantic_hash": "2f758fb0cdbb607ac5a99a4386b53b92"
+  },
+  "/home/sg4067/Documents/focusforge/app/_layout.tsx": {
+    "mtime": 1779535025.1125114,
+    "ast_hash": "08ddde8a40bd20c377d9b433afa04c50",
+    "semantic_hash": "08ddde8a40bd20c377d9b433afa04c50"
+  },
+  "/home/sg4067/Documents/focusforge/app/index.tsx": {
+    "mtime": 1779535412.583149,
+    "ast_hash": "904dc90740efa6a836a902ef1132780f",
+    "semantic_hash": "904dc90740efa6a836a902ef1132780f"
+  },
+  "/home/sg4067/Documents/focusforge/app/coach.tsx": {
+    "mtime": 1779601818.766729,
+    "ast_hash": "903fe395bb2dac4342d0d2932510db0a",
+    "semantic_hash": "903fe395bb2dac4342d0d2932510db0a"
+  },
+  "/home/sg4067/Documents/focusforge/app/support.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "bb0e00f87a9dc7a9f2bba0a8b5d95afe",
+    "semantic_hash": "bb0e00f87a9dc7a9f2bba0a8b5d95afe"
+  },
+  "/home/sg4067/Documents/focusforge/app/upgrade.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "b0af8a6eb1ce0b7dfd8d5c50d702371e",
+    "semantic_hash": "b0af8a6eb1ce0b7dfd8d5c50d702371e"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/rewards.tsx": {
+    "mtime": 1779535388.943042,
+    "ast_hash": "3721d0bd12b3979b82d6feb84e2601c6",
+    "semantic_hash": "3721d0bd12b3979b82d6feb84e2601c6"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/profile.tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "958eb28019ee290599655c78a274be5b",
+    "semantic_hash": "958eb28019ee290599655c78a274be5b"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/_layout.tsx": {
+    "mtime": 1779535078.2747185,
+    "ast_hash": "2edff8239b5c8758bb79e5e5a46a379d",
+    "semantic_hash": "2edff8239b5c8758bb79e5e5a46a379d"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/index.tsx": {
+    "mtime": 1779604896.418285,
+    "ast_hash": "028578c1b6679cd08514eb61ef545803",
+    "semantic_hash": "028578c1b6679cd08514eb61ef545803"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/focus.tsx": {
+    "mtime": 1779535307.4956796,
+    "ast_hash": "b878f49ec09197ab5315ffcda6e31e17",
+    "semantic_hash": "b878f49ec09197ab5315ffcda6e31e17"
+  },
+  "/home/sg4067/Documents/focusforge/app/(tabs)/stats.tsx": {
+    "mtime": 1779602498.9539497,
+    "ast_hash": "eb6250739ba593b1e24552d0e1357fed",
+    "semantic_hash": "eb6250739ba593b1e24552d0e1357fed"
+  },
+  "/home/sg4067/Documents/focusforge/app/detail/[id].tsx": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "1daabb2f35256bb34c60735bd6dc89ad",
+    "semantic_hash": "1daabb2f35256bb34c60735bd6dc89ad"
+  },
+  "/home/sg4067/Documents/focusforge/app/(auth)/login.tsx": {
+    "mtime": 1779478276.0391102,
+    "ast_hash": "520ea36c957770723c669a9a3b309ca4",
+    "semantic_hash": "520ea36c957770723c669a9a3b309ca4"
+  },
+  "/home/sg4067/Documents/focusforge/app/(auth)/_layout.tsx": {
+    "mtime": 1779478276.0390065,
+    "ast_hash": "939ebe409d171b7edd8f582eca6f730e",
+    "semantic_hash": "939ebe409d171b7edd8f582eca6f730e"
+  },
+  "/home/sg4067/Documents/focusforge/app/(onboarding)/_layout.tsx": {
+    "mtime": 1779478276.0391102,
+    "ast_hash": "b3d272a389cb09aa10f1746544fc2fe4",
+    "semantic_hash": "b3d272a389cb09aa10f1746544fc2fe4"
+  },
+  "/home/sg4067/Documents/focusforge/app/(onboarding)/index.tsx": {
+    "mtime": 1779478276.0394418,
+    "ast_hash": "6abb894d3dd9a2f98d627d8635b40c6d",
+    "semantic_hash": "6abb894d3dd9a2f98d627d8635b40c6d"
+  },
+  "/home/sg4067/Documents/focusforge/components/TabBar.tsx": {
+    "mtime": 1779478276.0438733,
+    "ast_hash": "eca05f8ab132e72319534027ac21f3d3",
+    "semantic_hash": "eca05f8ab132e72319534027ac21f3d3"
+  },
+  "/home/sg4067/Documents/focusforge/components/OfflineOverlay.tsx": {
+    "mtime": 1779478276.0438733,
+    "ast_hash": "7498b91b41694710411215d9bb7cbfe1",
+    "semantic_hash": "7498b91b41694710411215d9bb7cbfe1"
+  },
+  "/home/sg4067/Documents/focusforge/components/OfflineBanner.tsx": {
+    "mtime": 1779478276.042253,
+    "ast_hash": "a90d24d6df3c71d7aefc3652bb758c9d",
+    "semantic_hash": "a90d24d6df3c71d7aefc3652bb758c9d"
+  },
+  "/home/sg4067/Documents/focusforge/components/focus/MindfulPauseModal.tsx": {
+    "mtime": 1779534873.543964,
+    "ast_hash": "252803eaf8be7005774e24f8e10d06b7",
+    "semantic_hash": "252803eaf8be7005774e24f8e10d06b7"
+  },
+  "/home/sg4067/Documents/focusforge/components/focus/SessionCompleteModal.tsx": {
+    "mtime": 1779535159.106046,
+    "ast_hash": "5b5a80effdcd0050e12c6135c631930a",
+    "semantic_hash": "5b5a80effdcd0050e12c6135c631930a"
+  },
+  "/home/sg4067/Documents/focusforge/components/focus/DoomLoopManager.tsx": {
+    "mtime": 1779604000.9745996,
+    "ast_hash": "9e49b9cbc20b05305a8bd0a65c6d93ed",
+    "semantic_hash": "9e49b9cbc20b05305a8bd0a65c6d93ed"
+  },
+  "/home/sg4067/Documents/focusforge/components/focus/MirrorMoodSelector.tsx": {
+    "mtime": 1779534853.3438964,
+    "ast_hash": "52d3fbbb78bccde0405acf287199a365",
+    "semantic_hash": "52d3fbbb78bccde0405acf287199a365"
+  },
+  "/home/sg4067/Documents/focusforge/components/focus/TimerRing.tsx": {
+    "mtime": 1779539048.928548,
+    "ast_hash": "8f53d1768ec9e2a5265b3d1a0a285359",
+    "semantic_hash": "8f53d1768ec9e2a5265b3d1a0a285359"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/AppModal.tsx": {
+    "mtime": 1779478276.0438733,
+    "ast_hash": "1ae1842a3c1520b2e4a20eb50b3156eb",
+    "semantic_hash": "1ae1842a3c1520b2e4a20eb50b3156eb"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/SettingsRow.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "9a3a7aa5292a1cc7dfcac2a588523c7b",
+    "semantic_hash": "9a3a7aa5292a1cc7dfcac2a588523c7b"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/Text.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "a9c660000fbea12d78097899f4f94d62",
+    "semantic_hash": "a9c660000fbea12d78097899f4f94d62"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/Button.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "937c399b1633fc023115fd30dfb8a4b6",
+    "semantic_hash": "937c399b1633fc023115fd30dfb8a4b6"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/Card.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "91db8dc92dcced75a289dfd707d68b0c",
+    "semantic_hash": "91db8dc92dcced75a289dfd707d68b0c"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/TextInputField.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "f99e4b0bc3ac087a091db968f4f24736",
+    "semantic_hash": "f99e4b0bc3ac087a091db968f4f24736"
+  },
+  "/home/sg4067/Documents/focusforge/components/ui/StatusBadge.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "c766d446d771c4427a305c8fc613f39f",
+    "semantic_hash": "c766d446d771c4427a305c8fc613f39f"
+  },
+  "/home/sg4067/Documents/focusforge/components/gamification/LeisureBankRing.tsx": {
+    "mtime": 1779539036.6801982,
+    "ast_hash": "9c4b68ea6b9690d2209ae815e0dce0ac",
+    "semantic_hash": "9c4b68ea6b9690d2209ae815e0dce0ac"
+  },
+  "/home/sg4067/Documents/focusforge/components/gamification/TimeTranslatorCard.tsx": {
+    "mtime": 1779535337.00381,
+    "ast_hash": "3b8bddc90134fa150d50457298a6dfab",
+    "semantic_hash": "3b8bddc90134fa150d50457298a6dfab"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/eas.json": {
+    "mtime": 1776655800.0,
+    "ast_hash": "1fec238c3830e7eeb4ab2cd41e1b3e5e",
+    "semantic_hash": "1fec238c3830e7eeb4ab2cd41e1b3e5e"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app.json": {
+    "mtime": 1776655800.0,
+    "ast_hash": "9477c7817f284cbc83c48821ede6eecf",
+    "semantic_hash": "9477c7817f284cbc83c48821ede6eecf"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/tailwind.config.js": {
+    "mtime": 1776655800.0,
+    "ast_hash": "9addc1b1655476dfdc50a4f03cc1d5ab",
+    "semantic_hash": "9addc1b1655476dfdc50a4f03cc1d5ab"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/package.json": {
+    "mtime": 1776655800.0,
+    "ast_hash": "507b1ae87a7373e524c7a223259cd102",
+    "semantic_hash": "507b1ae87a7373e524c7a223259cd102"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/metro.config.js": {
+    "mtime": 1776655800.0,
+    "ast_hash": "fa372c2cf3bb3a9810076516ae2896ff",
+    "semantic_hash": "fa372c2cf3bb3a9810076516ae2896ff"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/jest.config.js": {
+    "mtime": 1776655800.0,
+    "ast_hash": "80c69ac4e3b13f00c788ff3ebad62eea",
+    "semantic_hash": "80c69ac4e3b13f00c788ff3ebad62eea"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/tsconfig.json": {
+    "mtime": 1776655800.0,
+    "ast_hash": "2e97a3b911bc08bc33d20a78abcbca4d",
+    "semantic_hash": "2e97a3b911bc08bc33d20a78abcbca4d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/hooks/useProfile.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "e035977c67bba9cfb6f759d4dfdf885e",
+    "semantic_hash": "e035977c67bba9cfb6f759d4dfdf885e"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/hooks/useNotifications.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "6a60e10bdcbd3dba03f2f6bb8523d766",
+    "semantic_hash": "6a60e10bdcbd3dba03f2f6bb8523d766"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/hooks/useItems.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "e006c6d353b1d414219f626df40df13d",
+    "semantic_hash": "e006c6d353b1d414219f626df40df13d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/hooks/useActivityFeed.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "e66b38ebdcfb0d5080c9d8b6394bdaee",
+    "semantic_hash": "e66b38ebdcfb0d5080c9d8b6394bdaee"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/settings.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "7e648f94981692f2459a7be30a17cae4",
+    "semantic_hash": "7e648f94981692f2459a7be30a17cae4"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/privacy.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "57c830ba73534e082b246e1ca3ceabd0",
+    "semantic_hash": "57c830ba73534e082b246e1ca3ceabd0"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/terms.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "2f758fb0cdbb607ac5a99a4386b53b92",
+    "semantic_hash": "2f758fb0cdbb607ac5a99a4386b53b92"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/_layout.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "6ecb337febbceb46883e6b300a231747",
+    "semantic_hash": "6ecb337febbceb46883e6b300a231747"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/index.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "772cb414b1b7b16fc3061aa79b9a41e3",
+    "semantic_hash": "772cb414b1b7b16fc3061aa79b9a41e3"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/support.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "bb0e00f87a9dc7a9f2bba0a8b5d95afe",
+    "semantic_hash": "bb0e00f87a9dc7a9f2bba0a8b5d95afe"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/upgrade.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "b0af8a6eb1ce0b7dfd8d5c50d702371e",
+    "semantic_hash": "b0af8a6eb1ce0b7dfd8d5c50d702371e"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(tabs)/explore.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "01cb50288a99a8b7a8536af5a03a7576",
+    "semantic_hash": "01cb50288a99a8b7a8536af5a03a7576"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(tabs)/activity.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "9dfb5e8464d1585823e9d9bb69fec1f2",
+    "semantic_hash": "9dfb5e8464d1585823e9d9bb69fec1f2"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(tabs)/profile.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "958eb28019ee290599655c78a274be5b",
+    "semantic_hash": "958eb28019ee290599655c78a274be5b"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(tabs)/_layout.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "568d68c13335c8b1773ca759231daa28",
+    "semantic_hash": "568d68c13335c8b1773ca759231daa28"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(tabs)/index.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "95cfefb26585695676dc9377ef5dab44",
+    "semantic_hash": "95cfefb26585695676dc9377ef5dab44"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/detail/[id].tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "1daabb2f35256bb34c60735bd6dc89ad",
+    "semantic_hash": "1daabb2f35256bb34c60735bd6dc89ad"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(auth)/login.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "520ea36c957770723c669a9a3b309ca4",
+    "semantic_hash": "520ea36c957770723c669a9a3b309ca4"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(auth)/_layout.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "939ebe409d171b7edd8f582eca6f730e",
+    "semantic_hash": "939ebe409d171b7edd8f582eca6f730e"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(onboarding)/_layout.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "b3d272a389cb09aa10f1746544fc2fe4",
+    "semantic_hash": "b3d272a389cb09aa10f1746544fc2fe4"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/app/(onboarding)/index.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "6abb894d3dd9a2f98d627d8635b40c6d",
+    "semantic_hash": "6abb894d3dd9a2f98d627d8635b40c6d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/TabBar.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "eca05f8ab132e72319534027ac21f3d3",
+    "semantic_hash": "eca05f8ab132e72319534027ac21f3d3"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/OfflineOverlay.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "7498b91b41694710411215d9bb7cbfe1",
+    "semantic_hash": "7498b91b41694710411215d9bb7cbfe1"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/OfflineBanner.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "a90d24d6df3c71d7aefc3652bb758c9d",
+    "semantic_hash": "a90d24d6df3c71d7aefc3652bb758c9d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/AppModal.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "1ae1842a3c1520b2e4a20eb50b3156eb",
+    "semantic_hash": "1ae1842a3c1520b2e4a20eb50b3156eb"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/SettingsRow.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "9a3a7aa5292a1cc7dfcac2a588523c7b",
+    "semantic_hash": "9a3a7aa5292a1cc7dfcac2a588523c7b"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/Text.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "a9c660000fbea12d78097899f4f94d62",
+    "semantic_hash": "a9c660000fbea12d78097899f4f94d62"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/Button.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "937c399b1633fc023115fd30dfb8a4b6",
+    "semantic_hash": "937c399b1633fc023115fd30dfb8a4b6"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/Card.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "91db8dc92dcced75a289dfd707d68b0c",
+    "semantic_hash": "91db8dc92dcced75a289dfd707d68b0c"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/TextInputField.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "f99e4b0bc3ac087a091db968f4f24736",
+    "semantic_hash": "f99e4b0bc3ac087a091db968f4f24736"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/components/ui/StatusBadge.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "c766d446d771c4427a305c8fc613f39f",
+    "semantic_hash": "c766d446d771c4427a305c8fc613f39f"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/__tests__/utils.test.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "6d79b646f9fe8cd706d8932663a13362",
+    "semantic_hash": "6d79b646f9fe8cd706d8932663a13362"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/contexts/SubscriptionContext.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "d4d0ba0631cc5a6371c79780e5babdf2",
+    "semantic_hash": "d4d0ba0631cc5a6371c79780e5babdf2"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/contexts/ToastContext.tsx": {
+    "mtime": 1776655800.0,
+    "ast_hash": "868694d957b72b57354e9e5b365fcd96",
+    "semantic_hash": "868694d957b72b57354e9e5b365fcd96"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/locales/en.json": {
+    "mtime": 1776655800.0,
+    "ast_hash": "72f587d3f26322f7b1823fc305616f4c",
+    "semantic_hash": "72f587d3f26322f7b1823fc305616f4c"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/supabase/functions/revenuecat-webhook/index.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "efdb651e7a59628293fe5fde39fd26b7",
+    "semantic_hash": "efdb651e7a59628293fe5fde39fd26b7"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/supabase/migrations/20260418000000_app_domain.sql": {
+    "mtime": 1776655800.0,
+    "ast_hash": "72dcd649ff9ee9ecca8c4e9aa1613b4d",
+    "semantic_hash": "72dcd649ff9ee9ecca8c4e9aa1613b4d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/supabase/migrations/20260101000000_init.sql": {
+    "mtime": 1776655800.0,
+    "ast_hash": "768c67412b97e7ed6545a0ec82a2fed3",
+    "semantic_hash": "768c67412b97e7ed6545a0ec82a2fed3"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/typography.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "99af009fa0dd03ddada3714a5e791247",
+    "semantic_hash": "99af009fa0dd03ddada3714a5e791247"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/supabase.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "faa7c7da3eef080493cd07b2b42d96f5",
+    "semantic_hash": "faa7c7da3eef080493cd07b2b42d96f5"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/queryClient.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "5c0cc6cff657c4f7a88dba014b067eba",
+    "semantic_hash": "5c0cc6cff657c4f7a88dba014b067eba"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/constants.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "e9da4a6729ef3780b17b3015bca7b8ec",
+    "semantic_hash": "e9da4a6729ef3780b17b3015bca7b8ec"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/useNetworkStatus.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "52486fdebcf3596ed8037386e6fbe388",
+    "semantic_hash": "52486fdebcf3596ed8037386e6fbe388"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/theme.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "d2060438b3c6202b83be48249de42520",
+    "semantic_hash": "d2060438b3c6202b83be48249de42520"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/analytics.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "14cce150cafb1cd94d84f67288eff49a",
+    "semantic_hash": "14cce150cafb1cd94d84f67288eff49a"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/i18n.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "ec06aec86698968d153f6d66352c6297",
+    "semantic_hash": "ec06aec86698968d153f6d66352c6297"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/mockData.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "435f47a38eaf304f117cd48d126da3e0",
+    "semantic_hash": "435f47a38eaf304f117cd48d126da3e0"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/purchases.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "ed79e9b77f3a26696b1d5a13af1219c3",
+    "semantic_hash": "ed79e9b77f3a26696b1d5a13af1219c3"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/featureFlags.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "8276c8ab534e13bcdf22de834d8ee72a",
+    "semantic_hash": "8276c8ab534e13bcdf22de834d8ee72a"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/lib/utils.ts": {
+    "mtime": 1776655800.0,
+    "ast_hash": "789029d3dd3dc7ce066a43e8c285cfec",
+    "semantic_hash": "789029d3dd3dc7ce066a43e8c285cfec"
+  },
+  "/home/sg4067/Documents/focusforge/__tests__/utils.test.ts": {
+    "mtime": 1779478276.0384388,
+    "ast_hash": "6d79b646f9fe8cd706d8932663a13362",
+    "semantic_hash": "6d79b646f9fe8cd706d8932663a13362"
+  },
+  "/home/sg4067/Documents/focusforge/contexts/SubscriptionContext.tsx": {
+    "mtime": 1779478276.0442207,
+    "ast_hash": "d4d0ba0631cc5a6371c79780e5babdf2",
+    "semantic_hash": "d4d0ba0631cc5a6371c79780e5babdf2"
+  },
+  "/home/sg4067/Documents/focusforge/contexts/UsageContext.tsx": {
+    "mtime": 1779478665.378007,
+    "ast_hash": "108522c7d77d24502929a01ca52a4a69",
+    "semantic_hash": "108522c7d77d24502929a01ca52a4a69"
+  },
+  "/home/sg4067/Documents/focusforge/contexts/ToastContext.tsx": {
+    "mtime": 1779478276.0447826,
+    "ast_hash": "868694d957b72b57354e9e5b365fcd96",
+    "semantic_hash": "868694d957b72b57354e9e5b365fcd96"
+  },
+  "/home/sg4067/Documents/focusforge/contexts/FocusContext.tsx": {
+    "mtime": 1779539492.8422976,
+    "ast_hash": "ab681a55148e6e702f4c3471aef3bcf1",
+    "semantic_hash": "ab681a55148e6e702f4c3471aef3bcf1"
+  },
+  "/home/sg4067/Documents/focusforge/locales/en.json": {
+    "mtime": 1779478276.045471,
+    "ast_hash": "72f587d3f26322f7b1823fc305616f4c",
+    "semantic_hash": "72f587d3f26322f7b1823fc305616f4c"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/functions/generate-insight/index.ts": {
+    "mtime": 1779535585.9013987,
+    "ast_hash": "f8db888893664a3313963ce9f4d25ca9",
+    "semantic_hash": "f8db888893664a3313963ce9f4d25ca9"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/functions/revenuecat-webhook/index.ts": {
+    "mtime": 1779535585.9073997,
+    "ast_hash": "7331fe5c8a0f049f44cf4605a728fc92",
+    "semantic_hash": "7331fe5c8a0f049f44cf4605a728fc92"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/functions/premium-coach-chat/index.ts": {
+    "mtime": 1779535585.8973982,
+    "ast_hash": "10256a5a67ebff4f5b748476806d5ef5",
+    "semantic_hash": "10256a5a67ebff4f5b748476806d5ef5"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/migrations/20260523000000_focusforge_schema.sql": {
+    "mtime": 1779535585.8973982,
+    "ast_hash": "498fe6d6d7481004d971af6db4a8f85b",
+    "semantic_hash": "498fe6d6d7481004d971af6db4a8f85b"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/migrations/20260418000000_app_domain.sql": {
+    "mtime": 1779478276.0523906,
+    "ast_hash": "72dcd649ff9ee9ecca8c4e9aa1613b4d",
+    "semantic_hash": "72dcd649ff9ee9ecca8c4e9aa1613b4d"
+  },
+  "/home/sg4067/Documents/focusforge/supabase/migrations/20260101000000_init.sql": {
+    "mtime": 1779478276.052121,
+    "ast_hash": "768c67412b97e7ed6545a0ec82a2fed3",
+    "semantic_hash": "768c67412b97e7ed6545a0ec82a2fed3"
+  },
+  "/home/sg4067/Documents/focusforge/lib/typography.ts": {
+    "mtime": 1779478365.5556316,
+    "ast_hash": "99af009fa0dd03ddada3714a5e791247",
+    "semantic_hash": "99af009fa0dd03ddada3714a5e791247"
+  },
+  "/home/sg4067/Documents/focusforge/lib/supabase.ts": {
+    "mtime": 1779478365.5555153,
+    "ast_hash": "faa7c7da3eef080493cd07b2b42d96f5",
+    "semantic_hash": "faa7c7da3eef080493cd07b2b42d96f5"
+  },
+  "/home/sg4067/Documents/focusforge/lib/queryClient.ts": {
+    "mtime": 1779478365.5554605,
+    "ast_hash": "5c0cc6cff657c4f7a88dba014b067eba",
+    "semantic_hash": "5c0cc6cff657c4f7a88dba014b067eba"
+  },
+  "/home/sg4067/Documents/focusforge/lib/constants.ts": {
+    "mtime": 1779478414.9836066,
+    "ast_hash": "5a3208d043b5a58d587e13eb7376d22f",
+    "semantic_hash": "5a3208d043b5a58d587e13eb7376d22f"
+  },
+  "/home/sg4067/Documents/focusforge/lib/useNetworkStatus.ts": {
+    "mtime": 1779478365.5557125,
+    "ast_hash": "52486fdebcf3596ed8037386e6fbe388",
+    "semantic_hash": "52486fdebcf3596ed8037386e6fbe388"
+  },
+  "/home/sg4067/Documents/focusforge/lib/theme.ts": {
+    "mtime": 1779535372.6309688,
+    "ast_hash": "f1df30505cae6bdb6650018aa77959b8",
+    "semantic_hash": "f1df30505cae6bdb6650018aa77959b8"
+  },
+  "/home/sg4067/Documents/focusforge/lib/analytics.ts": {
+    "mtime": 1779478365.5550616,
+    "ast_hash": "14cce150cafb1cd94d84f67288eff49a",
+    "semantic_hash": "14cce150cafb1cd94d84f67288eff49a"
+  },
+  "/home/sg4067/Documents/focusforge/lib/timer.ts": {
+    "mtime": 1779478456.345636,
+    "ast_hash": "9340e40e0b65e5ab7d1471c960bd22ff",
+    "semantic_hash": "9340e40e0b65e5ab7d1471c960bd22ff"
+  },
+  "/home/sg4067/Documents/focusforge/lib/i18n.ts": {
+    "mtime": 1779478365.5552099,
+    "ast_hash": "ec06aec86698968d153f6d66352c6297",
+    "semantic_hash": "ec06aec86698968d153f6d66352c6297"
+  },
+  "/home/sg4067/Documents/focusforge/lib/mockData.ts": {
+    "mtime": 1779478365.555331,
+    "ast_hash": "435f47a38eaf304f117cd48d126da3e0",
+    "semantic_hash": "435f47a38eaf304f117cd48d126da3e0"
+  },
+  "/home/sg4067/Documents/focusforge/lib/purchases.ts": {
+    "mtime": 1779478365.5554042,
+    "ast_hash": "ed79e9b77f3a26696b1d5a13af1219c3",
+    "semantic_hash": "ed79e9b77f3a26696b1d5a13af1219c3"
+  },
+  "/home/sg4067/Documents/focusforge/lib/featureFlags.ts": {
+    "mtime": 1779478365.5551493,
+    "ast_hash": "8276c8ab534e13bcdf22de834d8ee72a",
+    "semantic_hash": "8276c8ab534e13bcdf22de834d8ee72a"
+  },
+  "/home/sg4067/Documents/focusforge/lib/utils.ts": {
+    "mtime": 1779478365.5557718,
+    "ast_hash": "789029d3dd3dc7ce066a43e8c285cfec",
+    "semantic_hash": "789029d3dd3dc7ce066a43e8c285cfec"
+  },
+  "/home/sg4067/Documents/focusforge/lib/storage.ts": {
+    "mtime": 1779478135.4375613,
+    "ast_hash": "36935cb99337c7ab2530c48d834e0541",
+    "semantic_hash": "36935cb99337c7ab2530c48d834e0541"
+  },
+  "/home/sg4067/Documents/focusforge/lib/types/supabase.ts": {
+    "mtime": 1779535585.8973982,
+    "ast_hash": "e0fc1ebe98daefb137e51b6ba8d4acdb",
+    "semantic_hash": "e0fc1ebe98daefb137e51b6ba8d4acdb"
+  },
+  "/home/sg4067/Documents/focusforge/lib/types/engine.ts": {
+    "mtime": 1779478100.208588,
+    "ast_hash": "6fffdb85ad59d995bf12d57bb6b9fc28",
+    "semantic_hash": "6fffdb85ad59d995bf12d57bb6b9fc28"
+  },
+  "/home/sg4067/Documents/focusforge/lib/utils/buffer.ts": {
+    "mtime": 1779478116.1369016,
+    "ast_hash": "995fc2a52ea9eb3d7d40c37b45f7797d",
+    "semantic_hash": "995fc2a52ea9eb3d7d40c37b45f7797d"
+  },
+  "/home/sg4067/Documents/focusforge/lib/engine/translator.ts": {
+    "mtime": 1779478168.455449,
+    "ast_hash": "6c94f3952feae07ca369088932723675",
+    "semantic_hash": "6c94f3952feae07ca369088932723675"
+  },
+  "/home/sg4067/Documents/focusforge/lib/engine/timeBank.ts": {
+    "mtime": 1779478210.7990012,
+    "ast_hash": "38234e3ad9d6557b169b4e025a84ebe0",
+    "semantic_hash": "38234e3ad9d6557b169b4e025a84ebe0"
+  },
+  "/home/sg4067/Documents/focusforge/lib/engine/doomLoop.ts": {
+    "mtime": 1779478217.7030094,
+    "ast_hash": "744ce5ce341f0700530125e843d50bf4",
+    "semantic_hash": "744ce5ce341f0700530125e843d50bf4"
+  },
+  "/home/sg4067/Documents/focusforge/.gemini/settings.json": {
+    "mtime": 1779475973.5581608,
+    "ast_hash": "7a2daac6ce74633524bedd5294ab17e8",
+    "semantic_hash": "7a2daac6ce74633524bedd5294ab17e8"
+  },
+  "/home/sg4067/Documents/focusforge/backend.md": {
+    "mtime": 1779533863.3414168,
+    "ast_hash": "5f69d44f51bfe1468c79220df73dab55",
+    "semantic_hash": "5f69d44f51bfe1468c79220df73dab55"
+  },
+  "/home/sg4067/Documents/focusforge/README.md": {
+    "mtime": 1779478276.0384388,
+    "ast_hash": "9c41ffd35f43e3d1343c36062796d3f1",
+    "semantic_hash": "9c41ffd35f43e3d1343c36062796d3f1"
+  },
+  "/home/sg4067/Documents/focusforge/GEMINI.md": {
+    "mtime": 1779476045.719216,
+    "ast_hash": "1554118f80a6f63654ca052ff002d995",
+    "semantic_hash": "1554118f80a6f63654ca052ff002d995"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions.yml": {
+    "mtime": 1779476046.0160537,
+    "ast_hash": "94ed8d3bfe81b58a24df61d656ddf5ac",
+    "semantic_hash": "94ed8d3bfe81b58a24df61d656ddf5ac"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/README.md": {
+    "mtime": 1779476017.8362353,
+    "ast_hash": "03c2460bdc0f0edd93a3a4f551c5bec0",
+    "semantic_hash": "03c2460bdc0f0edd93a3a4f551c5bec0"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/git-config.yml": {
+    "mtime": 1779476017.8416002,
+    "ast_hash": "2e959d8f99a1aa365700f91f006dde16",
+    "semantic_hash": "2e959d8f99a1aa365700f91f006dde16"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/extension.yml": {
+    "mtime": 1779476017.8412738,
+    "ast_hash": "5d4eebdd419577a3773d375e890404f1",
+    "semantic_hash": "5d4eebdd419577a3773d375e890404f1"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/config-template.yml": {
+    "mtime": 1779476017.840891,
+    "ast_hash": "2e959d8f99a1aa365700f91f006dde16",
+    "semantic_hash": "2e959d8f99a1aa365700f91f006dde16"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/commands/speckit.git.remote.md": {
+    "mtime": 1779476017.8471794,
+    "ast_hash": "eeafceb7d40fa71cd35a39d62842d74e",
+    "semantic_hash": "eeafceb7d40fa71cd35a39d62842d74e"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/commands/speckit.git.validate.md": {
+    "mtime": 1779476017.847508,
+    "ast_hash": "4379082fcdc8ff26ae4228596e4b6f3f",
+    "semantic_hash": "4379082fcdc8ff26ae4228596e4b6f3f"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/commands/speckit.git.initialize.md": {
+    "mtime": 1779476017.8468707,
+    "ast_hash": "3b445c45690f63d74c072d2ad6b24d71",
+    "semantic_hash": "3b445c45690f63d74c072d2ad6b24d71"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/commands/speckit.git.feature.md": {
+    "mtime": 1779476017.8454773,
+    "ast_hash": "1bd5a1974afd675961220e03622cb182",
+    "semantic_hash": "1bd5a1974afd675961220e03622cb182"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/extensions/git/commands/speckit.git.commit.md": {
+    "mtime": 1779476017.8419986,
+    "ast_hash": "072a42b77ae4fc61ee2541fbdb9f191b",
+    "semantic_hash": "072a42b77ae4fc61ee2541fbdb9f191b"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/workflows/speckit/workflow.yml": {
+    "mtime": 1779476017.9130588,
+    "ast_hash": "eba6943b2a2f6407162ae12e0218bdac",
+    "semantic_hash": "eba6943b2a2f6407162ae12e0218bdac"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/memory/constitution.md": {
+    "mtime": 1779477190.066381,
+    "ast_hash": "0e7d3168da9f923f6724c1fb99f517cc",
+    "semantic_hash": "0e7d3168da9f923f6724c1fb99f517cc"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/templates/spec-template.md": {
+    "mtime": 1779476045.757547,
+    "ast_hash": "45ac8538bc1220324c9f0d610145b53f",
+    "semantic_hash": "45ac8538bc1220324c9f0d610145b53f"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/templates/constitution-template.md": {
+    "mtime": 1779476045.7591865,
+    "ast_hash": "dcefb6b60e7cb3db2e966977b6f02f18",
+    "semantic_hash": "dcefb6b60e7cb3db2e966977b6f02f18"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/templates/tasks-template.md": {
+    "mtime": 1779477212.3721232,
+    "ast_hash": "d8692edfe76132cc50721352d7edcdc4",
+    "semantic_hash": "d8692edfe76132cc50721352d7edcdc4"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/templates/checklist-template.md": {
+    "mtime": 1779476045.790006,
+    "ast_hash": "87c4b390cebe71d15364bcd4690a102f",
+    "semantic_hash": "87c4b390cebe71d15364bcd4690a102f"
+  },
+  "/home/sg4067/Documents/focusforge/.specify/templates/plan-template.md": {
+    "mtime": 1779477199.881707,
+    "ast_hash": "64c43d35590cd753bb89c2ff99881c12",
+    "semantic_hash": "64c43d35590cd753bb89c2ff99881c12"
+  },
+  "/home/sg4067/Documents/focusforge/specs/001-psychological-focus-engine/research.md": {
+    "mtime": 1779477926.1211514,
+    "ast_hash": "87a1fded7d86aff9eaec1f2b0b4c096f",
+    "semantic_hash": "87a1fded7d86aff9eaec1f2b0b4c096f"
+  },
+  "/home/sg4067/Documents/focusforge/specs/001-psychological-focus-engine/spec.md": {
+    "mtime": 1779477483.1334293,
+    "ast_hash": "30dd7aeedf6d959d02b226f837882463",
+    "semantic_hash": "30dd7aeedf6d959d02b226f837882463"
+  },
+  "/home/sg4067/Documents/focusforge/specs/001-psychological-focus-engine/data-model.md": {
+    "mtime": 1779477926.1211514,
+    "ast_hash": "4e611826896db52cfbefa4fa39fec2bd",
+    "semantic_hash": "4e611826896db52cfbefa4fa39fec2bd"
+  },
+  "/home/sg4067/Documents/focusforge/specs/001-psychological-focus-engine/plan.md": {
+    "mtime": 1779477926.1211514,
+    "ast_hash": "4ac4d4778981a9cfc28d1edf3a1d8fe6",
+    "semantic_hash": "4ac4d4778981a9cfc28d1edf3a1d8fe6"
+  },
+  "/home/sg4067/Documents/focusforge/specs/001-psychological-focus-engine/tasks.md": {
+    "mtime": 1779477946.6346877,
+    "ast_hash": "3fee3c013c6d8c640f8a26b1109bfded",
+    "semantic_hash": "3fee3c013c6d8c640f8a26b1109bfded"
+  },
+  "/home/sg4067/Documents/focusforge/.github/workflows/ci.yml": {
+    "mtime": 1779478365.561936,
+    "ast_hash": "b43d28692dac33a76fafa363f88eeb36",
+    "semantic_hash": "b43d28692dac33a76fafa363f88eeb36"
+  },
+  "/home/sg4067/Documents/focusforge/docs/IMPLEMENTATION_PLAN.md": {
+    "mtime": 1779475323.389857,
+    "ast_hash": "3ab708ecc03533ede9c41b982a490b63",
+    "semantic_hash": "3ab708ecc03533ede9c41b982a490b63"
+  },
+  "/home/sg4067/Documents/focusforge/docs/ARCHITECTURE.md": {
+    "mtime": 1779475318.8776891,
+    "ast_hash": "551c0ce5d4dfef84ddf4202b7f634ed9",
+    "semantic_hash": "551c0ce5d4dfef84ddf4202b7f634ed9"
+  },
+  "/home/sg4067/Documents/focusforge/docs/APPFLOW.md": {
+    "mtime": 1779475321.927803,
+    "ast_hash": "7a828800f679674775023f752154d8d3",
+    "semantic_hash": "7a828800f679674775023f752154d8d3"
+  },
+  "/home/sg4067/Documents/focusforge/docs/ai_integration_strategy.html": {
+    "mtime": 1779533014.8218143,
+    "ast_hash": "abd48471d1afcd7664e880b2f8542508",
+    "semantic_hash": "abd48471d1afcd7664e880b2f8542508"
+  },
+  "/home/sg4067/Documents/focusforge/docs/analyze_this_claude_chat.txt": {
+    "mtime": 1779533160.9068713,
+    "ast_hash": "58fcef11a497897efe95c6d2a130132a",
+    "semantic_hash": "58fcef11a497897efe95c6d2a130132a"
+  },
+  "/home/sg4067/Documents/focusforge/docs/TECHSTACK.md": {
+    "mtime": 1779475320.6247547,
+    "ast_hash": "237605e72ec0927e03b0a5f633795348",
+    "semantic_hash": "237605e72ec0927e03b0a5f633795348"
+  },
+  "/home/sg4067/Documents/focusforge/docs/offline_ai_architecture.html": {
+    "mtime": 1779533109.587726,
+    "ast_hash": "9940e88af3e6f82659f85b26d34e3d1b",
+    "semantic_hash": "9940e88af3e6f82659f85b26d34e3d1b"
+  },
+  "/home/sg4067/Documents/focusforge/docs/focusforge_unique_features.html": {
+    "mtime": 1779475113.0639813,
+    "ast_hash": "2010018672469101e63f3d676fc687b9",
+    "semantic_hash": "2010018672469101e63f3d676fc687b9"
+  },
+  "/home/sg4067/Documents/focusforge/docs/PRD.md": {
+    "mtime": 1779475317.05062,
+    "ast_hash": "3eecf84074a870592fc2c67d81ad869d",
+    "semantic_hash": "3eecf84074a870592fc2c67d81ad869d"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/README.md": {
+    "mtime": 1776655800.0,
+    "ast_hash": "9c41ffd35f43e3d1343c36062796d3f1",
+    "semantic_hash": "9c41ffd35f43e3d1343c36062796d3f1"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/.github/workflows/ci.yml": {
+    "mtime": 1776655800.0,
+    "ast_hash": "b43d28692dac33a76fafa363f88eeb36",
+    "semantic_hash": "b43d28692dac33a76fafa363f88eeb36"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/.claude-logs/2026-04-18_15-33-40_9dae186b.md": {
+    "mtime": 1776655800.0,
+    "ast_hash": "33b54656fa9e2b6b9eaa27af7e891201",
+    "semantic_hash": "33b54656fa9e2b6b9eaa27af7e891201"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/.claude-logs/2026-04-20_20-58-12_02453ecd.md": {
+    "mtime": 1776655800.0,
+    "ast_hash": "8ef573c2a83c82adda59552d17548ec5",
+    "semantic_hash": "8ef573c2a83c82adda59552d17548ec5"
+  },
+  "/home/sg4067/Documents/focusforge/.claude-logs/2026-04-18_15-33-40_9dae186b.md": {
+    "mtime": 1779478365.558499,
+    "ast_hash": "33b54656fa9e2b6b9eaa27af7e891201",
+    "semantic_hash": "33b54656fa9e2b6b9eaa27af7e891201"
+  },
+  "/home/sg4067/Documents/focusforge/.claude-logs/2026-04-20_20-58-12_02453ecd.md": {
+    "mtime": 1779478365.5586393,
+    "ast_hash": "8ef573c2a83c82adda59552d17548ec5",
+    "semantic_hash": "8ef573c2a83c82adda59552d17548ec5"
+  },
+  "/home/sg4067/Documents/focusforge/assets/adaptive-icon.png": {
+    "mtime": 1779478276.0396671,
+    "ast_hash": "3be7b8b182ccd96e48989b4e57311193",
+    "semantic_hash": "3be7b8b182ccd96e48989b4e57311193"
+  },
+  "/home/sg4067/Documents/focusforge/assets/splash-icon.png": {
+    "mtime": 1779478276.042253,
+    "ast_hash": "97dae5a0e62ad8551d8a31897b425e63",
+    "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
+  },
+  "/home/sg4067/Documents/focusforge/assets/icon.png": {
+    "mtime": 1779478276.042253,
+    "ast_hash": "cb975bba2216ce10a60e6c0ffe9941a2",
+    "semantic_hash": "cb975bba2216ce10a60e6c0ffe9941a2"
+  },
+  "/home/sg4067/Documents/focusforge/assets/favicon.png": {
+    "mtime": 1779478276.0411537,
+    "ast_hash": "d9f444efbdfbe7931aa93beada07318a",
+    "semantic_hash": "d9f444efbdfbe7931aa93beada07318a"
+  },
+  "/home/sg4067/Documents/focusforge/docs/Screenshot 2026-05-24 at 21-58-22 (1) Instagram.png": {
+    "mtime": 1779640102.170877,
+    "ast_hash": "a1f2c42ced7148bf781fec967b400ad2",
+    "semantic_hash": "a1f2c42ced7148bf781fec967b400ad2"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/assets/adaptive-icon.png": {
+    "mtime": 1776655800.0,
+    "ast_hash": "3be7b8b182ccd96e48989b4e57311193",
+    "semantic_hash": "3be7b8b182ccd96e48989b4e57311193"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/assets/splash-icon.png": {
+    "mtime": 1776655800.0,
+    "ast_hash": "97dae5a0e62ad8551d8a31897b425e63",
+    "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/assets/icon.png": {
+    "mtime": 1776655800.0,
+    "ast_hash": "cb975bba2216ce10a60e6c0ffe9941a2",
+    "semantic_hash": "cb975bba2216ce10a60e6c0ffe9941a2"
+  },
+  "/home/sg4067/Documents/focusforge/docs/template-mobile-main/assets/favicon.png": {
+    "mtime": 1776655800.0,
+    "ast_hash": "d9f444efbdfbe7931aa93beada07318a",
+    "semantic_hash": "d9f444efbdfbe7931aa93beada07318a"
+  }
+}

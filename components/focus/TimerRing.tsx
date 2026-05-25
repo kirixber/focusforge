@@ -47,7 +47,7 @@ export const TimerRing: React.FC<TimerRingProps> = ({
           </LinearGradient>
         </Defs>
 
-        <G rotation="-90" origin={`${size / 2}, ${size / 2}`}>
+        <G transform={`rotate(-90 ${size / 2} ${size / 2})`}>
           {/* Track */}
           <Circle
             cx={size / 2}

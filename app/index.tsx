@@ -15,7 +15,7 @@ import Animated, {
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { Text } from '@/components/ui/Text'
-import { ACCENT, ACCENT_DIM, BG, BORDER } from '@/lib/theme'
+import { ACCENT, ACCENT_DIM, BG, BORDER, ON_ACCENT } from '@/lib/theme'
 import { APP_NAME, APP_TAGLINE, APP_DESCRIPTION } from '@/lib/constants'
 import { adjustBrightness } from '@/lib/utils'
 
@@ -28,6 +28,8 @@ const FEATURES = [
     { icon: 'eye-outline' as const, title: 'Doom Loop Detector', desc: 'Break mindless scrolling loops instantly' },
     { icon: 'stats-chart-outline' as const, title: 'Psychology Insights', desc: 'Map your emotional triggers and wins' },
 ]
+
+import { MagneticLiquidButton } from '@/components/ui/MagneticLiquidButton'
 
 export default function LandingScreen() {
     const insets = useSafeAreaInsets()
@@ -121,19 +123,10 @@ export default function LandingScreen() {
                     </View>
 
                     {/* Right — Get Started button */}
-                    <Pressable
+                    <MagneticLiquidButton 
+                        label="Get Started"
                         onPress={() => router.push('/(auth)/login')}
-                        style={({ pressed }) => [s.headerCta, pressed && { opacity: 0.82, transform: [{ scale: 0.97 }] }]}
-                    >
-                        <LinearGradient
-                            colors={[ACCENT, adjustBrightness(ACCENT, -18)]}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 0 }}
-                            style={s.headerCtaGrad}
-                        >
-                            <Text style={s.headerCtaText}>Get Started</Text>
-                        </LinearGradient>
-                    </Pressable>
+                    />
                 </View>
             </Animated.View>
 
@@ -241,7 +234,7 @@ const s = StyleSheet.create({
     headerLogoText: {
         fontSize: 16,
         fontWeight: '800',
-        color: '#fff',
+        color: ON_ACCENT,
     },
     headerAppName: {
         color: '#fff',
@@ -259,7 +252,7 @@ const s = StyleSheet.create({
         borderRadius: 999,
     },
     headerCtaText: {
-        color: '#fff',
+        color: ON_ACCENT,
         fontSize: 13,
         fontWeight: '700',
         letterSpacing: 0.2,

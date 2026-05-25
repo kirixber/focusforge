@@ -88,11 +88,11 @@ export const SessionCompleteModal = React.forwardRef<BottomSheetModal, SessionCo
 
         <View style={s.footer}>
           <Button 
-            title="Complete & Save" 
+            label="Complete & Save" 
             onPress={handleDone}
             disabled={!selectedMood}
             variant={!selectedMood ? 'secondary' : 'primary'}
-            style={{ width: '100%' }}
+            fullWidth
           />
         </View>
       </BottomSheetView>
