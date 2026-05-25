@@ -27,9 +27,9 @@ export interface OpenPattern {
   appId: string; // 'internal' for MVP
 }
 
-export interface TimeEquivalent {
-  id: string;
-  category: 'social' | 'health' | 'learning' | 'leisure';
-  label: string; // e.g., "Read 2 chapters of a novel"
-  minutesRequired: number;
+export type SessionMode = 'pomodoro' | 'short_break' | 'long_break' | 'custom';
+
+export interface SplashState {
+  isReady: boolean;
+  videoFinished: boolean;
 }

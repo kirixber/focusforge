@@ -118,6 +118,12 @@ function ScreenTracker() {
 
 // ─── Root layout ──────────────────────────────────────────────────────────────
 
+import * as SplashScreen from 'expo-splash-screen'
+import { VideoSplash } from '@/components/focus/VideoSplash'
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync()
+
 function RootLayout() {
   const navigationRef = useNavigationContainerRef()
   const [fontsLoaded] = useFonts({
@@ -133,10 +139,18 @@ function RootLayout() {
   // null = loading; false = not completed; true = completed
   const [onboardingCompleted, setOnboardingCompleted] = useState<boolean | null>(null)
   const [i18nReady, setI18nReady] = useState(false)
+  const [showVideoSplash, setShowVideoSplash] = useState(true)
 
   useEffect(() => {
     initI18n().then(() => setI18nReady(true))
   }, [])
+
+  useEffect(() => {
+    if (fontsLoaded && isAuthed !== null && i18nReady && (isAuthed === false || onboardingCompleted !== null)) {
+      // Native splash is done, now we can transition to video splash
+      SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded, isAuthed, i18nReady, onboardingCompleted])
 
   useEffect(() => {
     if (navigationRef.current) {
@@ -215,6 +229,10 @@ function RootLayout() {
 
   return (
     <ErrorBoundary>
+      {showVideoSplash && (
+        <VideoSplash onFinish={() => setShowVideoSplash(false)} />
+      )}
+      
       <I18nextProvider i18n={i18n}>
         <MaybePostHogProvider>
           <QueryClientProvider client={queryClient}>

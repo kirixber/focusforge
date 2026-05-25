@@ -17,8 +17,8 @@ description: "Task list for implementing the minimal video loading screen"
 
 **Purpose**: Project initialization and dependency setup
 
-- [ ] T001 [P] Install `expo-av` dependency via `npx expo install expo-av`
-- [ ] T002 [P] Verify `assets/logo_code.mp4` exists and is correctly placed in `assets/`
+- [x] T001 [P] Install `expo-av` dependency via `npx expo install expo-av`
+- [x] T002 [P] Verify `assets/logo_code.mp4` exists and is correctly placed in `assets/`
 
 ---
 
@@ -26,8 +26,8 @@ description: "Task list for implementing the minimal video loading screen"
 
 **Purpose**: Core components needed for the splash screen
 
-- [ ] T003 [P] Create base component structure in `components/focus/VideoSplash.tsx`
-- [ ] T004 [P] Update `lib/types/engine.ts` with splash state types
+- [x] T003 [P] Create base component structure in `components/focus/VideoSplash.tsx`
+- [x] T004 [P] Update `lib/types/engine.ts` with splash state types
 
 ---
 
@@ -39,19 +39,19 @@ description: "Task list for implementing the minimal video loading screen"
 
 ### Implementation for User Story 1
 
-- [ ] T005 [P] [US1] Implement full-screen `Video` playback in `components/focus/VideoSplash.tsx`
-- [ ] T006 [P] [US1] Add `onPlaybackStatusUpdate` and `didJustFinish` logic to handle completion
-- [ ] T007 [US1] Modify `app/_layout.tsx` to include `showSplash` state variable
-- [ ] T008 [US1] Integrate `expo-splash-screen` logic to keep native splash until video is ready
-- [ ] T009 [US1] Trigger main navigation render when `showSplash` becomes false
+- [x] T005 [P] [US1] Implement full-screen `Video` playback in `components/focus/VideoSplash.tsx`
+- [x] T006 [P] [US1] Add `onPlaybackStatusUpdate` and `didJustFinish` logic to handle completion
+- [x] T007 [US1] Modify `app/_layout.tsx` to include `showSplash` state variable
+- [x] T008 [US1] Integrate `expo-splash-screen` logic to keep native splash until video is ready
+- [x] T009 [US1] Trigger main navigation render when `showSplash` becomes false
 
 ---
 
 ## Phase 4: Polish & Cross-Cutting Concerns
 
-- [ ] T010 [P] Add Reanimated fade transition between splash and root view
-- [ ] T011 Ensure splash video is muted and uses `resizeMode="cover"`
-- [ ] T012 Final visual validation of continuity between native and video splash
+- [x] T010 [P] Add Reanimated fade transition between splash and root view
+- [x] T011 Ensure splash video is muted and uses `resizeMode="cover"`
+- [x] T012 Final visual validation of continuity between native and video splash
 
 ---
 
