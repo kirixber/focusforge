@@ -137,14 +137,14 @@ export const MindfulPauseModal = React.forwardRef<BottomSheetModal, MindfulPause
         <View style={s.footer}>
           {reason === 'Procrastinating' || reason === 'Boredom' ? (
             <Button 
-              title="Start 5m Micro-Focus" 
+              label="Start 5m Micro-Focus" 
               onPress={onStartMicroFocus}
               variant="primary"
               style={s.mainButton}
             />
           ) : (
             <Button 
-              title="Continue with Intention" 
+              label="Continue with Intention" 
               onPress={onDismiss}
               disabled={countdown > 0 || !reason}
               variant={countdown > 0 || !reason ? 'secondary' : 'primary'}

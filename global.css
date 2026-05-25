@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 198 228 197; /* #C6E4C5 (Celadon White) */
+    --accent: 2 58 34;        /* #023A22 (Off-Road Green) */
+    --surface: 174 241 201;   /* Light surface derived from Celadon */
+    --surface2: 146 213 174;  /* Lighter surface */
+    --muted: 86 107 94;       /* Wilted Sage */
+    --text-primary: 2 58 34;
+    --text-accent: 2 58 34;
+  }
+
+  .dark {
+    --background: 2 58 34;    /* #023A22 (Off-Road Green) */
+    --accent: 198 228 197;    /* #C6E4C5 (Celadon White) */
+    --surface: 3 79 50;       /* Muted Forest */
+    --surface2: 5 98 62;      /* Elevated Pine */
+    --muted: 86 107 94;       /* Wilted Sage */
+    --text-primary: 198 228 197;
+    --text-accent: 198 228 197;
+  }
+}

@@ -1,5 +1,7 @@
+import '../global.css'
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Platform, DeviceEventEmitter } from 'react-native'
+import { colorScheme } from 'nativewind'
 import { Stack, useNavigationContainerRef, usePathname } from 'expo-router'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/lib/queryClient'
@@ -27,6 +29,16 @@ import {
   Inter_700Bold,
   Inter_800ExtraBold,
 } from '@expo-google-fonts/inter'
+import {
+  Outfit_400Regular,
+  Outfit_600SemiBold,
+  Outfit_800ExtraBold,
+} from '@expo-google-fonts/outfit'
+import {
+  JetBrainsMono_400Regular,
+  JetBrainsMono_500Medium,
+  JetBrainsMono_600SemiBold,
+} from '@expo-google-fonts/jetbrains-mono'
 import { ThemeProvider, DarkTheme } from '@react-navigation/native'
 import { PostHogProvider } from 'posthog-react-native'
 import { I18nextProvider } from 'react-i18next'
@@ -125,6 +137,10 @@ import { VideoSplash } from '@/components/focus/VideoSplash'
 SplashScreen.preventAutoHideAsync()
 
 function RootLayout() {
+  useEffect(() => {
+    colorScheme.set('light')
+  }, [])
+
   const navigationRef = useNavigationContainerRef()
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -132,6 +148,12 @@ function RootLayout() {
     Inter_600SemiBold,
     Inter_700Bold,
     Inter_800ExtraBold,
+    Outfit_400Regular,
+    Outfit_600SemiBold,
+    Outfit_800ExtraBold,
+    JetBrainsMono_400Regular,
+    JetBrainsMono_500Medium,
+    JetBrainsMono_600SemiBold,
   })
 
   // null = still checking; true/false = auth state known

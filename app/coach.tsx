@@ -29,8 +29,11 @@ import {
   BORDER, 
   TEXT_PRIMARY, 
   TEXT_SECONDARY,
-  ACCENT_DIM
+  TEXT_TERTIARY,
+  ACCENT_DIM,
+  ON_ACCENT
 } from '@/lib/theme';
+import { Sparkles, ChevronLeft } from 'lucide-react-native';
 
 export default function CoachChatScreen() {
   const insets = useSafeAreaInsets();
@@ -52,20 +55,23 @@ export default function CoachChatScreen() {
   }, [messages, isTyping]);
 
   return (
-    <View style={[s.root, { backgroundColor: BG }]}>
+    <View className="flex-1 bg-background">
       {/* Custom Header */}
-      <View style={[s.header, { paddingTop: insets.top + 10 }]}>
-        <Pressable onPress={() => router.back()} style={s.backBtn}>
-          <Ionicons name="chevron-back" size={24} color={TEXT_PRIMARY} />
+      <View 
+        className="flex-row items-center justify-between px-4 pb-4 border-b border-accent/5"
+        style={{ paddingTop: insets.top + 10 }}
+      >
+        <Pressable onPress={() => router.back()} className="w-10 h-10 items-center justify-center">
+          <ChevronLeft size={24} color={ACCENT} />
         </Pressable>
-        <View style={s.headerTitleWrap}>
-          <Text style={s.headerTitle}>Claude Coach</Text>
-          <View style={s.statusRow}>
-            <View style={s.onlineDot} />
-            <Text style={s.statusText}>Premium AI</Text>
+        <View className="items-center">
+          <Text className="font-outfit-bold text-[20px] text-accent">Claude Coach</Text>
+          <View className="flex-row items-center gap-1 mt-0.5">
+            <View className="w-1.5 h-1.5 rounded-full bg-success" />
+            <Text className="font-mono text-[10px] text-accent/60 uppercase tracking-widest">Premium AI</Text>
           </View>
         </View>
-        <View style={{ width: 40 }} />
+        <View className="w-10" />
       </View>
 
       <KeyboardAvoidingView 
@@ -75,30 +81,30 @@ export default function CoachChatScreen() {
       >
         <ScrollView 
           ref={scrollRef}
-          contentContainerStyle={[s.chatContent, { paddingBottom: 20 }]}
+          contentContainerStyle={{ padding: 20, gap: 16, paddingBottom: 20 }}
           showsVerticalScrollIndicator={false}
         >
           {messages.length === 0 && (
-            <Animated.View entering={FadeInDown.delay(200)} style={s.welcomeCard}>
-              <View style={s.iconWrap}>
-                <Ionicons name="sparkles" size={32} color={ACCENT} />
+            <Animated.View entering={FadeInDown.delay(200)} className="bg-surface rounded-[2rem] p-8 border border-white/5 items-center mb-10">
+              <View className="w-16 h-16 rounded-full bg-surface2 items-center justify-center mb-6">
+                <Sparkles size={32} color={ACCENT} />
               </View>
-              <Text style={s.welcomeTitle}>Deep Behavioral Coaching</Text>
-              <Text style={s.welcomeDesc}>
-                I'm Claude. I have access to your focus patterns and mood logs. 
-                How can I help you explore your focus today?
+              <Text className="font-outfit-bold text-[24px] text-accent mb-2 text-center">Behavioral Coaching</Text>
+              <Text className="font-outfit text-[15px] text-accent/60 text-center leading-6 mb-8">
+                I'm Claude. I have access to your focus patterns and digital nursery progress. 
+                How can I help you refine your growth today?
               </Text>
-              <View style={s.suggestionGrid}>
-                {['Why do I scroll on Sundays?', 'How can I stay focused longer?', 'Analyze my recent moods'].map((text) => (
+              <View className="w-full gap-3">
+                {['Analyze my focus patterns', 'How to reduce screen time?', 'Suggest a session duration'].map((text) => (
                   <Pressable 
                     key={text}
                     onPress={() => {
                       setInputText(text);
                       Haptics.selectionAsync();
                     }}
-                    style={s.suggestionBtn}
+                    className="bg-surface2/50 px-6 py-4 rounded-xl border border-white/5 active:bg-surface2"
                   >
-                    <Text style={s.suggestionText}>{text}</Text>
+                    <Text className="font-mono text-[13px] text-accent text-center">{text}</Text>
                   </Pressable>
                 ))}
               </View>
@@ -115,14 +121,15 @@ export default function CoachChatScreen() {
                 msg.role === 'user' ? s.userWrap : s.botWrap
               ]}
             >
-              <View style={[
-                s.bubble,
-                msg.role === 'user' ? s.userBubble : s.botBubble
-              ]}>
-                <Text style={[
-                  s.messageText,
-                  msg.role === 'user' ? s.userText : s.botText
-                ]}>
+              <View className={`${
+                msg.role === 'user' 
+                  ? 'bg-accent rounded-t-[1.5rem] rounded-bl-[1.5rem]' 
+                  : 'bg-surface2 rounded-t-[1.5rem] rounded-br-[1.5rem] border border-white/5'
+                } max-w-[85%] px-5 py-4 mb-4`}
+              >
+                <Text className={`font-outfit text-[16px] leading-6 ${
+                  msg.role === 'user' ? 'text-background' : 'text-accent'
+                }`}>
                   {msg.content}
                 </Text>
               </View>
@@ -131,7 +138,7 @@ export default function CoachChatScreen() {
 
           {isTyping && (
             <Animated.View entering={FadeInUp} style={s.botWrap}>
-              <View style={[s.bubble, s.botBubble, s.typingBubble]}>
+              <View className="bg-surface2 rounded-t-[1.5rem] rounded-br-[1.5rem] border border-white/5 px-5 py-4 mb-4">
                 <ActivityIndicator size="small" color={ACCENT} />
               </View>
             </Animated.View>
@@ -139,12 +146,15 @@ export default function CoachChatScreen() {
         </ScrollView>
 
         {/* Input Area */}
-        <View style={[s.inputArea, { paddingBottom: Math.max(insets.bottom, 20) }]}>
-          <View style={s.inputContainer}>
+        <View 
+            className="px-4 pt-3 bg-background border-t border-accent/5"
+            style={{ paddingBottom: Math.max(insets.bottom, 20) }}
+        >
+          <View className="flex-row items-end bg-surface rounded-[24px] px-4 py-2 gap-2.5 border border-accent/10">
             <TextInput 
               style={s.input}
               placeholder="Ask anything..."
-              placeholderTextColor="rgba(255,255,255,0.3)"
+              placeholderTextColor={TEXT_TERTIARY}
               value={inputText}
               onChangeText={setInputText}
               multiline
@@ -153,12 +163,11 @@ export default function CoachChatScreen() {
             <Pressable 
               onPress={handleSend}
               disabled={!inputText.trim() || isTyping}
-              style={[
-                s.sendBtn,
-                (!inputText.trim() || isTyping) && { opacity: 0.5 }
-              ]}
+              className={`w-9 h-9 rounded-full items-center justify-center mb-1 ${
+                (!inputText.trim() || isTyping) ? 'bg-accent/40' : 'bg-accent'
+              }`}
             >
-              <Ionicons name="arrow-up" size={20} color="#fff" />
+              <Ionicons name="arrow-up" size={20} color={ON_ACCENT} />
             </Pressable>
           </View>
         </View>
@@ -168,53 +177,6 @@ export default function CoachChatScreen() {
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1 },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: BORDER,
-  },
-  backBtn: {
-    width: 40,
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerTitleWrap: {
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: 17,
-    fontWeight: '800',
-    color: TEXT_PRIMARY,
-  },
-  statusRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    marginTop: 2,
-  },
-  onlineDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#4ade80',
-  },
-  statusText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: TEXT_SECONDARY,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  chatContent: {
-    padding: 20,
-    gap: 16,
-  },
   messageWrap: {
     width: '100%',
     flexDirection: 'row',
@@ -225,119 +187,13 @@ const s = StyleSheet.create({
   botWrap: {
     justifyContent: 'flex-start',
   },
-  bubble: {
-    maxWidth: '85%',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 20,
-  },
-  userBubble: {
-    backgroundColor: ACCENT,
-    borderBottomRightRadius: 4,
-  },
-  botBubble: {
-    backgroundColor: SURFACE2,
-    borderBottomLeftRadius: 4,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.05)',
-  },
-  typingBubble: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  messageText: {
-    fontSize: 15,
-    lineHeight: 22,
-  },
-  userText: {
-    color: '#fff',
-    fontWeight: '500',
-  },
-  botText: {
-    color: TEXT_PRIMARY,
-  },
-  welcomeCard: {
-    alignItems: 'center',
-    padding: 24,
-    backgroundColor: 'rgba(108, 99, 255, 0.05)',
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(108, 99, 255, 0.1)',
-    marginBottom: 20,
-  },
-  iconWrap: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: 'rgba(108, 99, 255, 0.1)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
-  },
-  welcomeTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: TEXT_PRIMARY,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  welcomeDesc: {
-    fontSize: 14,
-    color: TEXT_SECONDARY,
-    textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: 24,
-  },
-  suggestionGrid: {
-    width: '100%',
-    gap: 10,
-  },
-  suggestionBtn: {
-    backgroundColor: SURFACE,
-    padding: 14,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: BORDER,
-  },
-  suggestionText: {
-    fontSize: 13,
-    color: ACCENT,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  inputArea: {
-    paddingHorizontal: 16,
-    paddingTop: 12,
-    backgroundColor: BG,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: BORDER,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    backgroundColor: SURFACE2,
-    borderRadius: 24,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    gap: 10,
-    borderWidth: 1,
-    borderColor: BORDER,
-  },
   input: {
     flex: 1,
-    color: '#fff',
-    fontSize: 15,
+    color: TEXT_PRIMARY,
+    fontSize: 16,
     maxHeight: 100,
     paddingTop: 8,
     paddingBottom: 8,
+    fontFamily: 'Outfit_400Regular',
   },
-  sendBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: ACCENT,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 4,
-  }
 });

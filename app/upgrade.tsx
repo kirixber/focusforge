@@ -21,6 +21,7 @@ import { router } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
+import { ChevronLeft } from 'lucide-react-native'
 import { Text } from '@/components/ui/Text'
 import { AlertModal } from '@/components/ui/AppModal'
 import { useSubscription } from '@/contexts/SubscriptionContext'
@@ -208,7 +209,7 @@ export default function UpgradeScreen() {
   return (
     <View style={[s.container, { paddingTop: insets.top }]}>
       <Pressable onPress={() => router.back()} style={s.backBtn} hitSlop={12}>
-        <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.6)" />
+        <ChevronLeft size={24} color={ACCENT} />
       </Pressable>
 
       <ScrollView

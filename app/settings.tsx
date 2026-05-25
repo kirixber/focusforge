@@ -4,6 +4,7 @@ import { router } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ChevronLeft } from 'lucide-react-native'
 import { Text } from '@/components/ui/Text'
 import { Card } from '@/components/ui/Card'
 import SettingsRow from '@/components/ui/SettingsRow'
@@ -54,7 +55,7 @@ export default function SettingsScreen() {
         <View style={{ flex: 1, backgroundColor: BG }}>
             <View style={[s.header, { paddingTop: insets.top + 8 }]}>
                 <Pressable onPress={() => router.back()} hitSlop={12}>
-                    <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.6)" />
+                    <ChevronLeft size={24} color={ACCENT} />
                 </Pressable>
                 <Text style={s.headerTitle}>Settings</Text>
                 <View style={{ width: 24 }} />

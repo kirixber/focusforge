@@ -20,13 +20,30 @@ import {
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import { router } from 'expo-router'
 import * as WebBrowser from 'expo-web-browser'
+import { ChevronLeft } from 'lucide-react-native'
 import { Text } from '@/components/ui/Text'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useColorScheme } from 'nativewind'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { supabase } from '@/lib/supabase'
 import { track } from '@/lib/analytics'
-import { ACCENT, ACCENT_DIM, ACCENT_BORDER, BG, SURFACE, BORDER, ERROR, ERROR_DIM, TEXT_SECONDARY } from '@/lib/theme'
+import { 
+    ACCENT, 
+    ACCENT_DIM, 
+    ACCENT_BORDER, 
+    BG, 
+    SURFACE, 
+    BORDER, 
+    ERROR, 
+    ERROR_DIM, 
+    TEXT_PRIMARY,
+    TEXT_SECONDARY,
+    TEXT_TERTIARY,
+    TEXT_DISABLED,
+    ON_ACCENT,
+    BORDER_ACTIVE
+} from '@/lib/theme'
 import { APP_NAME, APP_SCHEME } from '@/lib/constants'
 import { adjustBrightness } from '@/lib/utils'
 import { Fonts } from '@/lib/typography'
@@ -63,6 +80,7 @@ function normalizeEmail(raw: string): string {
 
 export default function LoginScreen() {
   const insets = useSafeAreaInsets()
+  const { colorScheme } = useColorScheme()
 
   const [step, setStep] = useState<'email' | 'otp'>('email')
   const [email, setEmail] = useState('')
@@ -220,61 +238,62 @@ export default function LoginScreen() {
   }
 
   const handleGoogleLogin = () => handleOAuthLogin('google')
-  const handleAppleLogin  = () => handleOAuthLogin('apple')
 
   return (
-    <View style={s.root}>
+    <View className="flex-1 bg-background">
       {/* Back button */}
       <Pressable onPress={() => router.back()} style={[s.backBtn, { top: insets.top + 14 }]} hitSlop={14}>
-        <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.6)" />
+        <ChevronLeft size={24} color={TEXT_PRIMARY} />
       </Pressable>
 
       <KeyboardAvoidingView
-        style={s.kav}
+        style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView
-          contentContainerStyle={[s.form, { paddingTop: insets.top + 60, paddingBottom: insets.bottom + 32 }]}
+          className="flex-1 px-6"
+          contentContainerStyle={{ paddingTop: insets.top + 60, paddingBottom: insets.bottom + 32 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <Animated.View entering={FadeInDown.delay(80).duration(400)} style={s.content}>
+          <Animated.View entering={FadeInDown.delay(80).duration(400)} className="flex-1">
             {/* App badge */}
-            <View style={s.appBadge}>
-              <View style={s.appBadgeDot} />
-              <Text style={s.appBadgeText}>{APP_NAME}</Text>
+            <View className="bg-accent/10 border border-accent/20 rounded-full px-3 py-1.5 self-start flex-row items-center gap-2 mb-10">
+              <View className="w-2 h-2 rounded-full bg-accent" />
+              <Text style={{ color: TEXT_PRIMARY, opacity: 0.6 }} className="font-mono text-[11px] uppercase tracking-widest">{APP_NAME}</Text>
             </View>
 
             {/* Heading */}
             {step === 'email' ? (
-              <View style={s.titleBlock}>
-                <Text style={s.titleBold}>Welcome back</Text>
-                <Text style={s.sub}>Enter your email — we'll send a one-time code.</Text>
+              <View className="mb-10 gap-3">
+                <Text style={{ color: TEXT_PRIMARY }} className="font-outfit-bold text-[36px] leading-tight">Welcome back</Text>
+                <Text style={{ color: TEXT_PRIMARY, opacity: 0.6 }} className="font-outfit text-[16px]">Enter your email — we'll send a one-time code.</Text>
               </View>
             ) : (
-              <View style={s.titleBlock}>
-                <Text style={s.titleBold}>Check your inbox</Text>
-                <View style={s.emailPill}>
-                  <Text style={s.emailPillText} numberOfLines={1}>
+              <View className="mb-10 gap-3">
+                <Text style={{ color: TEXT_PRIMARY }} className="font-outfit-bold text-[36px] leading-tight">Check your inbox</Text>
+                <View className="bg-accent/10 border border-accent/20 rounded-xl px-4 py-2 self-start">
+                  <Text style={{ color: TEXT_PRIMARY }} className="font-mono-semibold text-[14px]" numberOfLines={1}>
                     {normalizeEmail(email)}
                   </Text>
                 </View>
-                <Text style={s.sub}>Enter the 6-digit code we sent. Check spam if needed.</Text>
+                <Text style={{ color: TEXT_PRIMARY, opacity: 0.6 }} className="font-outfit text-[16px]">Enter the 6-digit code we sent. Check spam if needed.</Text>
               </View>
             )}
 
             {/* ── Email step ── */}
             {step === 'email' && (
-              <View style={s.stepWrap}>
-                <View style={s.fieldGroup}>
-                  <Text style={s.label}>EMAIL ADDRESS</Text>
+              <View className="gap-6">
+                <View className="gap-2">
+                  <Text style={{ color: TEXT_PRIMARY, opacity: 0.4 }} className="font-mono text-[11px] uppercase tracking-widest ml-1">Email Address</Text>
                   <RNTextInput
                     ref={emailRef}
                     value={email}
                     onChangeText={(v) => { setEmail(v); setError(null) }}
                     placeholder="you@example.com"
-                    placeholderTextColor="rgba(255,255,255,0.18)"
-                    style={[s.input, error ? s.inputErr : null]}
+                    placeholderTextColor={TEXT_TERTIARY}
+                    className={`h-16 bg-accent/5 border rounded-[20px] px-6 text-[16px] font-outfit`}
+                    style={{ color: TEXT_PRIMARY, borderColor: error ? ERROR : BORDER_ACTIVE }}
                     keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -289,49 +308,36 @@ export default function LoginScreen() {
                 <Pressable
                   onPress={handleSendOtp}
                   disabled={loading || !email.trim()}
+                  className="overflow-hidden rounded-[20px]"
                   style={({ pressed }) => ({
                     opacity: (loading || !email.trim()) ? 0.4 : pressed ? 0.85 : 1,
-                    borderRadius: 14, overflow: 'hidden',
                   })}
                 >
-                  <LinearGradient
-                    colors={[ACCENT, adjustBrightness(ACCENT, -25)]}
-                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                    style={s.btn}
-                  >
+                  <View className="h-16 bg-accent items-center justify-center">
                     {loading
-                      ? <ActivityIndicator size="small" color="#fff" />
-                      : <Text style={s.btnText}>Continue</Text>
+                      ? <ActivityIndicator size="small" color={ON_ACCENT} />
+                      : <Text style={{ color: ON_ACCENT }} className="font-outfit-bold text-[17px]">Continue</Text>
                     }
-                  </LinearGradient>
+                  </View>
                 </Pressable>
 
                 {/* ─── Social logins ────────────────────── */}
-                <View style={s.dividerRow}>
-                  <View style={s.dividerLine} />
-                  <Text style={s.dividerText}>or continue with</Text>
-                  <View style={s.dividerLine} />
+                <View className="flex-row items-center gap-4 my-4">
+                  <View className="flex-1 h-[1px] bg-accent/10" />
+                  <Text style={{ color: TEXT_PRIMARY, opacity: 0.3 }} className="font-mono text-[11px] uppercase tracking-widest">or continue with</Text>
+                  <View className="flex-1 h-[1px] bg-accent/10" />
                 </View>
 
-                <View style={s.socialRow}>
+                <View className="flex-row">
                   {/* Google */}
                   <Pressable
                     onPress={handleGoogleLogin}
-                    style={({ pressed }) => [s.socialBtn, pressed && { opacity: 0.75 }]}
+                    className="flex-1 flex-row items-center justify-center gap-3 h-16 bg-surface border border-accent/10 rounded-[20px] active:opacity-75"
                   >
-                    <View style={s.socialIcon}>
-                      <Text style={{ fontSize: 15, fontWeight: '700' }}>G</Text>
+                    <View className="w-7 h-7 rounded-lg bg-white items-center justify-center shadow-sm">
+                      <Text className="font-outfit-bold text-[16px] text-black">G</Text>
                     </View>
-                    <Text style={s.socialBtnText}>Google</Text>
-                  </Pressable>
-
-                  {/* Apple */}
-                  <Pressable
-                    onPress={handleAppleLogin}
-                    style={({ pressed }) => [s.socialBtn, pressed && { opacity: 0.75 }]}
-                  >
-                    <Ionicons name="logo-apple" size={17} color="#fff" />
-                    <Text style={s.socialBtnText}>Apple</Text>
+                    <Text style={{ color: TEXT_PRIMARY }} className="font-outfit-semibold text-[16px]">Google</Text>
                   </Pressable>
                 </View>
               </View>
@@ -339,8 +345,8 @@ export default function LoginScreen() {
 
             {/* ── OTP step ── */}
             {step === 'otp' && (
-              <View style={s.stepWrap}>
-                <View style={s.otpRow}>
+              <View className="gap-6">
+                <View className="flex-row justify-between gap-2.5">
                   {otp.map((digit, i) => (
                     <RNTextInput
                       key={i}
@@ -348,7 +354,8 @@ export default function LoginScreen() {
                       value={digit}
                       onChangeText={(v) => handleOtpChange(v, i)}
                       onKeyPress={(e) => handleOtpKeyPress(e, i)}
-                      style={[s.otpBox, digit ? [s.otpBoxOn, { borderColor: ACCENT, backgroundColor: ACCENT_DIM }] : null]}
+                      className={`flex-1 h-16 bg-accent/5 border rounded-2xl text-center text-[28px] font-mono-semibold`}
+                      style={{ color: TEXT_PRIMARY, borderColor: digit ? ACCENT : BORDER }}
                       keyboardType="number-pad"
                       maxLength={1}
                       selectTextOnFocus
@@ -361,8 +368,8 @@ export default function LoginScreen() {
                 {error ? <ErrorBanner msg={error} /> : null}
 
                 {lockoutEnd ? (
-                  <Animated.View entering={FadeIn.duration(180)} style={s.lockoutBox}>
-                    <Text style={s.lockoutText}>
+                  <Animated.View entering={FadeIn.duration(180)} className="bg-yellow-500/10 border border-yellow-500/20 rounded-2xl p-4 items-center">
+                    <Text className="font-mono text-[14px] text-yellow-600">
                       Locked · {Math.floor(lockoutLeft / 60)}:{String(lockoutLeft % 60).padStart(2, '0')} remaining
                     </Text>
                   </Animated.View>
@@ -371,32 +378,28 @@ export default function LoginScreen() {
                 <Pressable
                   onPress={() => handleVerifyOtp(otp.join(''))}
                   disabled={loading || otp.includes('') || !!lockoutEnd}
+                  className="overflow-hidden rounded-[20px]"
                   style={({ pressed }) => ({
                     opacity: (loading || otp.includes('') || !!lockoutEnd) ? 0.4 : pressed ? 0.85 : 1,
-                    borderRadius: 14, overflow: 'hidden',
                   })}
                 >
-                  <LinearGradient
-                    colors={[ACCENT, adjustBrightness(ACCENT, -25)]}
-                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                    style={s.btn}
-                  >
+                  <View className="h-16 bg-accent items-center justify-center">
                     {loading
-                      ? <ActivityIndicator size="small" color="#fff" />
-                      : <Text style={s.btnText}>Verify Code</Text>
+                      ? <ActivityIndicator size="small" color={ON_ACCENT} />
+                      : <Text style={{ color: ON_ACCENT }} className="font-outfit-bold text-[17px]">Verify Code</Text>
                     }
-                  </LinearGradient>
+                  </View>
                 </Pressable>
 
-                <View style={s.otpMeta}>
+                <View className="flex-row items-center justify-center gap-4">
                   <Pressable onPress={handleResend} disabled={cooldown > 0} hitSlop={10}>
-                    <Text style={[s.resendText, cooldown > 0 && { color: 'rgba(255,255,255,0.22)' }]}>
+                    <Text style={{ color: cooldown > 0 ? TEXT_DISABLED : TEXT_PRIMARY }} className="font-mono-semibold text-[14px]">
                       {cooldown > 0 ? `Resend in ${cooldown}s` : 'Resend code'}
                     </Text>
                   </Pressable>
-                  <Text style={{ color: 'rgba(255,255,255,0.2)' }}>·</Text>
+                  <View className="w-1.5 h-1.5 rounded-full bg-accent/20" />
                   <Pressable onPress={goBack} hitSlop={10}>
-                    <Text style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13 }}>Change email</Text>
+                    <Text style={{ color: TEXT_PRIMARY, opacity: 0.4 }} className="font-mono text-[14px]">Change email</Text>
                   </Pressable>
                 </View>
               </View>
@@ -406,21 +409,21 @@ export default function LoginScreen() {
             {DEV_ALLOW_SKIP && (
               <Pressable
                 onPress={handleDevSkip}
-                style={({ pressed }) => [s.devSkipBtn, pressed && { opacity: 0.6 }]}
+                className="flex-row items-center justify-center gap-2 self-center mt-10 border border-accent/20 border-dashed rounded-2xl px-6 py-4 bg-accent/5 active:opacity-60"
               >
-                <Ionicons name="play-skip-forward-outline" size={14} color={TEXT_SECONDARY} />
-                <Text style={s.devSkipText}>Skip to Home (dev only)</Text>
+                <Ionicons name="play-skip-forward-outline" size={16} color={TEXT_SECONDARY} />
+                <Text style={{ color: TEXT_SECONDARY }} className="font-mono text-[13px]">Skip to Home (dev only)</Text>
               </Pressable>
             )}
 
             {/* Legal */}
-            <View style={s.legalRow}>
-              <Pressable onPress={() => router.push('/privacy')} hitSlop={8}>
-                <Text style={s.legalLink}>Privacy Policy</Text>
+            <View className="flex-row items-center justify-center gap-3 mt-auto pt-10">
+              <Pressable onPress={() => router.push('/privacy')} hitSlop={10}>
+                <Text style={{ color: TEXT_PRIMARY, opacity: 0.3 }} className="font-outfit text-[12px] underline">Privacy Policy</Text>
               </Pressable>
-              <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.18)' }}>·</Text>
-              <Pressable onPress={() => router.push('/terms')} hitSlop={8}>
-                <Text style={s.legalLink}>Terms of Service</Text>
+              <View className="w-1 h-1 rounded-full bg-accent/20" />
+              <Pressable onPress={() => router.push('/terms')} hitSlop={10}>
+                <Text style={{ color: TEXT_PRIMARY, opacity: 0.3 }} className="font-outfit text-[12px] underline">Terms of Service</Text>
               </Pressable>
             </View>
           </Animated.View>
@@ -432,8 +435,11 @@ export default function LoginScreen() {
 
 function ErrorBanner({ msg }: { msg: string }) {
   return (
-    <Animated.View entering={FadeIn.duration(180)} style={[s.errorBox, { backgroundColor: ERROR_DIM, borderColor: `${ERROR}33` }]}>
-      <Text style={{ color: ERROR, fontSize: 12.5 }}>{msg}</Text>
+    <Animated.View 
+      entering={FadeIn.duration(180)} 
+      className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3"
+    >
+      <Text className="text-red-500 font-outfit text-[13px]">{msg}</Text>
     </Animated.View>
   )
 }
@@ -441,117 +447,7 @@ function ErrorBanner({ msg }: { msg: string }) {
 const { width: SW } = Dimensions.get('window')
 
 const s = StyleSheet.create({
-  root: { flex: 1, backgroundColor: BG },
   backBtn: { position: 'absolute', left: 16, zIndex: 20 },
-  kav: { flex: 1 },
-  form: { flexGrow: 1, paddingHorizontal: 24 },
-  content: { flex: 1, gap: 0 },
-
-  // App badge
-  appBadge: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 7,
-    borderRadius: 999,
-    borderWidth: 1,
-    borderColor: BORDER,
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    paddingHorizontal: 11,
-    paddingVertical: 5,
-    marginBottom: 28,
-  },
-  appBadgeDot: {
-    width: 6, height: 6, borderRadius: 999, backgroundColor: ACCENT,
-  },
-  appBadgeText: {
-    fontSize: 11, fontWeight: '600', color: 'rgba(255,255,255,0.5)', letterSpacing: 0.2,
-  },
-
-  // Title
-  titleBlock: { gap: 10, marginBottom: 28 },
-  titleBold: { fontSize: 30, fontWeight: '800', color: '#fff', letterSpacing: -0.8, lineHeight: 36 },
-  sub: { fontSize: 14, color: 'rgba(255,255,255,0.40)', lineHeight: 20 },
-
-  emailPill: {
-    alignSelf: 'flex-start', borderWidth: 1, borderRadius: 8,
-    paddingHorizontal: 10, paddingVertical: 5,
-    backgroundColor: ACCENT_DIM, borderColor: ACCENT_BORDER,
-  },
-  emailPillText: { fontSize: 13, fontWeight: '500', color: ACCENT },
-
-  // Steps wrapper
-  stepWrap: { gap: 16 },
-
-  // Fields
-  fieldGroup: { gap: 8 },
-  label: { fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.30)' },
-  input: {
-    height: 52, backgroundColor: 'rgba(255,255,255,0.06)',
-    borderWidth: 1, borderColor: BORDER, borderRadius: 14,
-    paddingHorizontal: 16, color: '#fff', fontSize: 16,
-    fontFamily: Fonts.regular,
-  },
-  inputErr: { borderColor: `${ERROR}66` },
-
-  // Buttons
-  btn: { height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  btnText: { color: '#fff', fontSize: 15, fontWeight: '700' },
-
-  // Social buttons
-  dividerRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  dividerLine: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: BORDER },
-  dividerText: { color: 'rgba(255,255,255,0.25)', fontSize: 12 },
-  socialRow: { flexDirection: 'row', gap: 12 },
-  socialBtn: {
-    flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-    height: 50, backgroundColor: SURFACE, borderRadius: 14,
-    borderWidth: 1, borderColor: BORDER,
-  },
-  socialIcon: {
-    width: 22, height: 22, borderRadius: 5, backgroundColor: '#fff',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  socialBtnText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-
-  // Error
-  errorBox: { borderRadius: 10, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 10 },
-
-  // Lockout
-  lockoutBox: {
-    backgroundColor: 'rgba(251,191,36,0.08)', borderRadius: 10,
-    borderWidth: 1, borderColor: 'rgba(251,191,36,0.2)',
-    paddingHorizontal: 12, paddingVertical: 10, alignItems: 'center',
-  },
-  lockoutText: { color: '#fbbf24', fontSize: 13, fontWeight: '600' },
-
-  // OTP
   otpRow: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
-  otpBox: {
-    flex: 1,
-    height: 56, backgroundColor: 'rgba(255,255,255,0.06)',
-    borderWidth: 1, borderColor: BORDER, borderRadius: 12,
-    color: '#fff', fontSize: 22, textAlign: 'center',
-    textAlignVertical: 'center', paddingVertical: 0, paddingHorizontal: 0,
-    includeFontPadding: false,
-    fontFamily: Fonts.regular,
-  },
-  otpBoxOn: { color: ACCENT },
-  otpMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  resendText: { color: ACCENT, fontSize: 13, fontWeight: '500' },
-
-  // Dev skip
-  devSkipBtn: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
-    alignSelf: 'center',
-    marginTop: 20,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', borderStyle: 'dashed',
-    borderRadius: 10, paddingHorizontal: 16, paddingVertical: 10,
-    backgroundColor: 'rgba(255,255,255,0.03)',
-  },
-  devSkipText: { fontSize: 12, color: TEXT_SECONDARY, fontWeight: '500' },
-
-  // Legal
-  legalRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 'auto', paddingTop: 24 },
-  legalLink: { fontSize: 11, color: 'rgba(255,255,255,0.3)', textDecorationLine: 'underline' },
+  socialRow: { flexDirection: 'row', gap: 12 },
 })

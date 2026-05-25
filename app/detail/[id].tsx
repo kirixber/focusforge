@@ -2,6 +2,7 @@ import { View, ScrollView, StyleSheet, Pressable, ActivityIndicator } from 'reac
 import { router, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
+import { ChevronLeft } from 'lucide-react-native'
 import { Text } from '@/components/ui/Text'
 import { Card } from '@/components/ui/Card'
 import {
@@ -49,7 +50,7 @@ export default function DetailScreen() {
         <View style={{ flex: 1, backgroundColor: BG }}>
             <View style={[s.header, { paddingTop: insets.top + 8 }]}>
                 <Pressable onPress={() => router.back()} hitSlop={12}>
-                    <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.6)" />
+                    <ChevronLeft size={24} color={ACCENT} />
                 </Pressable>
                 <Text style={s.headerTitle} numberOfLines={1}>{item.name}</Text>
                 <View style={{ width: 24 }} />

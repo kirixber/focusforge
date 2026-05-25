@@ -2,8 +2,9 @@ import { ScrollView, StyleSheet, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import { ChevronLeft } from 'lucide-react-native'
 import { Text } from '@/components/ui/Text'
-import { BG, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY } from '@/lib/theme'
+import { BG, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY, ACCENT } from '@/lib/theme'
 
 export default function PrivacyScreen() {
     const insets = useSafeAreaInsets()
@@ -12,7 +13,7 @@ export default function PrivacyScreen() {
         <View style={{ flex: 1, backgroundColor: BG }}>
             <View style={[s.header, { paddingTop: insets.top + 8 }]}>
                 <Pressable onPress={() => router.back()} hitSlop={12}>
-                    <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.6)" />
+                    <ChevronLeft size={24} color={ACCENT} />
                 </Pressable>
                 <Text style={s.title}>Privacy Policy</Text>
                 <View style={{ width: 24 }} />

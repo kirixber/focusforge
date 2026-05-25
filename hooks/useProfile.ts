@@ -7,6 +7,7 @@ export interface UserProfile {
     fullName: string
     email: string
     initials: string
+    avatarUrl: string | null
     planType: 'free' | 'premium'
     currentStreak: number
     lastFocusAt: string | null
@@ -21,7 +22,7 @@ export function useProfile() {
 
             const { data: profile } = await supabase
                 .from('profiles')
-                .select('display_name, plan_type, current_streak')
+                .select('display_name, plan_type, current_streak, avatar_url')
                 .eq('id', user.id)
                 .maybeSingle()
 
@@ -45,6 +46,7 @@ export function useProfile() {
                 fullName,
                 email: user.email ?? '',
                 initials: getInitials(fullName),
+                avatarUrl: profile?.avatar_url ?? null,
                 planType: (profile?.plan_type as 'free' | 'premium') ?? 'free',
                 currentStreak: profile?.current_streak ?? 0,
                 lastFocusAt: lastSession?.ended_at ?? null,
@@ -54,6 +56,7 @@ export function useProfile() {
             fullName: demoUser.fullName,
             email: demoUser.email,
             initials: demoUser.initials,
+            avatarUrl: null,
             planType: 'free',
             currentStreak: 5,
             lastFocusAt: new Date().toISOString(),

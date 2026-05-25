@@ -1,20 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 
-// 🎨 BRAND: Change 'accent' to your brand color.
-// All NativeWind classes using bg-accent, text-accent, border-accent update automatically.
-// Also update Theme.accent in lib/theme.ts to match.
+// 🎨 BRAND: Theme colors are now driven by CSS variables in global.css
+// to support seamless inversion between light and dark modes.
 
 module.exports = {
+  darkMode: 'class',
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
-        background: '#0d0d0d',
-        accent: '#0ea5a4',      // 🎨 BRAND: your primary accent color
-        surface: '#1a1a1a',
-        surface2: '#242424',
-        muted: '#6b7280',
+        background: 'rgb(var(--background))',
+        accent: 'rgb(var(--accent))',
+        surface: 'rgb(var(--surface))',
+        surface2: 'rgb(var(--surface2))',
+        muted: 'rgb(var(--muted))',
+      },
+      fontFamily: {
+        outfit: ['Outfit_400Regular'],
+        'outfit-semibold': ['Outfit_600SemiBold'],
+        'outfit-bold': ['Outfit_800ExtraBold'],
+        mono: ['JetBrainsMono_400Regular'],
+        'mono-medium': ['JetBrainsMono_500Medium'],
+        'mono-semibold': ['JetBrainsMono_600SemiBold'],
+        satoshi: ['Inter_400Regular'], 
       },
     },
   },

@@ -1,272 +1,116 @@
-import React, { useMemo } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, ScrollView, TouchableOpacity, Pressable } from 'react-native';
 import { router } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LucideIcon, PersonStanding, Settings, Flame, CheckCircle2 } from 'lucide-react-native';
 import { Text } from '@/components/ui/Text';
-import { Card } from '@/components/ui/Card';
-import { TimeTranslatorCard } from '@/components/gamification/TimeTranslatorCard';
-import { useAIInsights } from '@/hooks/useAIInsights';
-import { translator } from '@/lib/engine/translator';
-import { shareAchievement } from '@/lib/utils/sharing';
-import { BG, ACCENT, TEXT_PRIMARY, TEXT_SECONDARY, TEXT_TERTIARY, SURFACE2 } from '@/lib/theme';
+import { WeeklyVitalityChart } from '@/components/charts/WeeklyVitalityChart';
+import { FocusDistributionRings } from '@/components/charts/FocusDistributionRings';
+import { ACCENT, BG, SURFACE } from '@/lib/theme';
 import { TAB_BAR_CLEARANCE } from '@/components/TabBar';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 export default function StatsScreen() {
   const insets = useSafeAreaInsets();
-  const { insights } = useAIInsights();
-  
-  const latestInsight = insights?.[0];
+  const [range, setRange] = useState('Weekly');
 
-  const handleShare = async (label: string) => {
-    await shareAchievement(label);
-  };
-  
-  // Simulated focus minutes for today
-  const totalFocusMinutes = 125;
-  
-  const equivalents = useMemo(() => 
-    translator.getEquivalents(totalFocusMinutes).slice(0, 3), 
-  [totalFocusMinutes]);
+  const RANGES = ['Weekly', 'Monthly', 'All Time'];
 
   return (
     <ScrollView 
-      style={{ flex: 1, backgroundColor: BG }}
-      contentContainerStyle={[s.container, { paddingTop: insets.top + 20, paddingBottom: TAB_BAR_CLEARANCE + 20 }]}
+      className="flex-1 bg-background"
+      contentContainerStyle={{ 
+        paddingTop: insets.top + 16, 
+        paddingBottom: TAB_BAR_CLEARANCE + 32,
+        paddingHorizontal: 24 
+      }}
       showsVerticalScrollIndicator={false}
     >
-      <View style={s.header}>
-        <Text style={s.title}>Insights</Text>
-        <Text style={s.subtitle}>Your focus is paying off.</Text>
+      {/* Header */}
+      <View className="flex-row justify-between items-center mb-8">
+        <View className="flex-row items-center gap-4">
+          <View className="w-10 h-10 rounded-full bg-surface items-center justify-center border border-white/10">
+            <PersonStanding size={20} color={ACCENT} />
+          </View>
+          <Text className="font-outfit-bold text-[24px] text-accent">FocusForge</Text>
+        </View>
+        <Pressable 
+          onPress={() => router.push('/settings')}
+          className="w-10 h-10 rounded-full bg-surface items-center justify-center border border-white/5"
+        >
+          <Settings size={20} color={ACCENT} />
+        </Pressable>
       </View>
 
-      {/* AI Coach Insight Card */}
-      {latestInsight && (
-        <View style={s.aiCoachSection}>
-          <View style={s.sectionHeaderRow}>
-            <Text style={s.sectionTitle}>Claude AI Coach</Text>
-            <Pressable 
-              onPress={() => router.push('/coach')}
-              style={s.chatLink}
+      {/* Analytics Header */}
+      <Animated.View entering={FadeInDown.duration(800)} className="mb-12">
+        <Text className="font-outfit-bold text-[56px] leading-[1.1] text-accent mb-2">
+          Analytics
+        </Text>
+        <Text className="font-outfit text-[18px] text-accent/60">
+          Tracking your growth in the quiet hours.
+        </Text>
+
+        <View className="flex-row bg-surface rounded-full p-1 mt-8 self-start w-full md:w-auto">
+          {RANGES.map((r) => (
+            <TouchableOpacity 
+              key={r}
+              onPress={() => setRange(r)}
+              className={`flex-1 md:flex-none px-6 py-2 rounded-full ${
+                range === r ? 'bg-accent' : ''
+              }`}
             >
-              <Text style={s.chatLinkText}>Chat with Coach</Text>
-              <Ionicons name="chevron-forward" size={12} color={ACCENT} />
-            </Pressable>
-          </View>
-          <Card style={s.aiCard}>
-            <View style={s.aiHeader}>
-              <Ionicons name="sparkles" size={16} color={ACCENT} />
-              <Text style={s.aiBadge}>AI OBSERVATION</Text>
-            </View>
-            <Text style={s.aiText}>"{latestInsight.insight_text}"</Text>
-          </Card>
-        </View>
-      )}
-
-      {/* Time Translator Hero */}
-      <View style={s.translatorHero}>
-        <Text style={s.heroTitle}>Today's Achievements</Text>
-        <View style={s.cardStack}>
-          {equivalents.map((eq, i) => (
-            <View key={eq.id} style={[s.stackedCard, { marginTop: i === 0 ? 0 : -45, zIndex: 10 - i, transform: [{ scale: 1 - i * 0.04 }] }]}>
-               <TimeTranslatorCard 
-                equivalent={eq} 
-                onShare={() => handleShare(eq.label)} 
-               />
-            </View>
+              <Text className={`font-mono text-[14px] text-center ${
+                range === r ? 'text-background font-bold' : 'text-accent/60'
+              }`}>
+                {r}
+              </Text>
+            </TouchableOpacity>
           ))}
+        </View>
+      </Animated.View>
+
+      {/* Charts Grid */}
+      <View className="flex-col gap-8">
+        <WeeklyVitalityChart 
+          totalHours="32.4h"
+          trend="+12%"
+          data={[40, 65, 100, 45, 80, 25, 30]}
+        />
+
+        <View className="flex-row gap-4">
+          <View className="flex-1 bg-surface rounded-[1.5rem] p-6 border border-white/5 flex-row items-center justify-between">
+            <View>
+              <Text className="font-mono text-[12px] text-accent/60 mb-2 uppercase tracking-widest">Streak</Text>
+              <Text className="font-mono-semibold text-[24px] text-accent">5 Days</Text>
+            </View>
+            <View className="w-12 h-12 rounded-full bg-surface2 items-center justify-center">
+              <Flame size={20} color={ACCENT} />
+            </View>
+          </View>
+          <View className="flex-1 bg-surface rounded-[1.5rem] p-6 border border-white/5 flex-row items-center justify-between">
+            <View>
+              <Text className="font-mono text-[12px] text-accent/60 mb-2 uppercase tracking-widest">Rate</Text>
+              <Text className="font-mono-semibold text-[24px] text-accent">92%</Text>
+            </View>
+            <View className="w-12 h-12 rounded-full bg-surface2 items-center justify-center">
+              <CheckCircle2 size={20} color={ACCENT} />
+            </View>
+          </View>
+        </View>
+
+        <View className="h-[450px]">
+            <FocusDistributionRings 
+                percentage={65}
+                dominantLabel="Work Dominant"
+                legend={[
+                    { label: 'Work', time: '18h 30m', color: ACCENT },
+                    { label: 'Education', time: '9h 15m', color: '#92d5ae' },
+                    { label: 'Social', time: '4h 45m', color: '#003a23' },
+                ]}
+            />
         </View>
       </View>
-
-      <Text style={s.sectionTitle}>Daily Overview</Text>
-      <Card style={s.summaryCard}>
-        <View style={s.summaryRow}>
-          <View style={s.summaryItem}>
-            <Text style={s.summaryValue}>{totalFocusMinutes}m</Text>
-            <Text style={s.summaryLabel}>Focused</Text>
-          </View>
-          <View style={s.summaryDivider} />
-          <View style={s.summaryItem}>
-            <Text style={s.summaryValue}>5</Text>
-            <Text style={s.summaryLabel}>Sessions</Text>
-          </View>
-          <View style={s.summaryDivider} />
-          <View style={s.summaryItem}>
-            <Text style={s.summaryValue}>92%</Text>
-            <Text style={s.summaryLabel}>Success</Text>
-          </View>
-        </View>
-      </Card>
-
-      <Text style={s.sectionTitle}>Weekly Trend</Text>
-      <Card style={s.chartPlaceholder}>
-        {/* Placeholder for Victory Native XL Chart */}
-        <View style={s.barContainer}>
-          {[40, 70, 20, 90, 100, 60, 45].map((h, i) => (
-            <View key={i} style={s.barWrap}>
-              <View style={[s.bar, { height: h }, i === 4 && { backgroundColor: ACCENT }]} />
-              <Text style={s.barDay}>{'MTWTFSS'[i]}</Text>
-            </View>
-          ))}
-        </View>
-        <Text style={s.chartHint}>Total focused this week: 14.5 hours</Text>
-      </Card>
-
-      <Text style={s.sectionTitle}>Mood Trigger Map</Text>
-      <Card style={s.moodMapCard}>
-        <Text style={s.moodText}>You focus best when feeling <Text style={{ color: ACCENT, fontWeight: '700' }}>Productive</Text>.</Text>
-        <Text style={s.moodSubText}>High vulnerability detected on Sunday evenings (Anxiety triggers scrolling).</Text>
-      </Card>
     </ScrollView>
   );
 }
-
-const s = StyleSheet.create({
-  container: { paddingHorizontal: 20, gap: 16 },
-  header: { marginBottom: 12 },
-  title: { fontSize: 32, fontWeight: '800', color: TEXT_PRIMARY, letterSpacing: -1 },
-  subtitle: { fontSize: 16, color: TEXT_SECONDARY, marginTop: 4 },
-  sectionTitle: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: TEXT_TERTIARY,
-    letterSpacing: 0.8,
-    textTransform: 'uppercase',
-    marginTop: 8,
-  },
-  sectionHeaderRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginBottom: 8,
-  },
-  chatLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingBottom: 2,
-  },
-  chatLinkText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: ACCENT,
-  },
-  aiCoachSection: {
-    marginBottom: 8,
-  },
-  aiCard: {
-    backgroundColor: 'rgba(108, 99, 255, 0.08)',
-    borderColor: 'rgba(108, 99, 255, 0.2)',
-    padding: 16,
-    gap: 10,
-  },
-  aiHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  aiBadge: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: ACCENT,
-    letterSpacing: 1,
-  },
-  aiText: {
-    fontSize: 15,
-    color: TEXT_PRIMARY,
-    lineHeight: 22,
-    fontStyle: 'italic',
-  },
-  translatorHero: {
-    marginBottom: 20,
-  },
-  heroTitle: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: TEXT_SECONDARY,
-    marginBottom: 16,
-  },
-  cardStack: {
-    // Stacked effect
-  },
-  stackedCard: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
-    elevation: 10,
-  },
-  summaryCard: {
-    paddingVertical: 20,
-  },
-  summaryRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  summaryItem: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  summaryValue: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: TEXT_PRIMARY,
-  },
-  summaryLabel: {
-    fontSize: 11,
-    color: TEXT_SECONDARY,
-    marginTop: 4,
-    fontWeight: '600',
-  },
-  summaryDivider: {
-    width: 1,
-    height: 30,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-  },
-  chartPlaceholder: {
-    height: 180,
-    padding: 20,
-    justifyContent: 'flex-end',
-  },
-  barContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    flex: 1,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-  barWrap: {
-    alignItems: 'center',
-    gap: 8,
-  },
-  bar: {
-    width: 20,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 6,
-  },
-  barDay: {
-    fontSize: 10,
-    color: TEXT_TERTIARY,
-    fontWeight: '600',
-  },
-  chartHint: {
-    fontSize: 12,
-    color: TEXT_SECONDARY,
-    textAlign: 'center',
-  },
-  moodMapCard: {
-    padding: 20,
-    gap: 8,
-  },
-  moodText: {
-    fontSize: 15,
-    color: TEXT_PRIMARY,
-    lineHeight: 22,
-  },
-  moodSubText: {
-    fontSize: 13,
-    color: TEXT_SECONDARY,
-    lineHeight: 18,
-  }
-});
