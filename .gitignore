@@ -2,8 +2,12 @@ node_modules/
 .expo/
 dist/
 web-build/
+.env
 .env.local
 .env.*.local
+ui_backup/
+.stitch/
+.gemini/
 *.orig.*
 ios/
 android/
